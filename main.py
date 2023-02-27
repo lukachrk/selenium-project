@@ -1,10 +1,10 @@
 from selenium import webdriver
+from selenium.webdriver.common.by import By
 from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.chrome.options import Options
 import unittest
 import page
-from selenium.webdriver.support.wait import WebDriverWait 
-from selenium.webdriver.common.by import By
+
 
 class browser:
   service, options = None, None
@@ -27,12 +27,12 @@ class titleSearch(unittest.TestCase):
     self.browser = browser()
     self.driver = self.browser.get_driver()
     self.driver.get('https://awork.ge/user/home')
+    self.driver.find_element(By.CLASS_NAME, 'btn.btn-medium').click()
 
-  def test_authorization(self):
-    Vacancy = page.authModule(self.driver)
+  def test_vacancy_filter(self):
+    Vacancy = page.MainPage(self.driver)
     Vacancy.send_input = "abc"
-    Vacancy.search_start()
-    assert True
+    assert Vacancy.search_start()
 
   def tearDown(self):
     self.driver.quit()
