@@ -4,7 +4,7 @@ class authPageLocators:
   Login_button = (By.CLASS_NAME,'btn.color-base.login-btn.font-bold.ng-tns-c78-1.ng-star-inserted')
 
 class MainPageLocators:
-  vacancy_input = (By.CLASS_NAME,'form-control')
-  vacancy_search_button = (By.TAG_NAME, 'button')
-  vacancy_result = (By.TAG_NAME, 'vacancy-card')
+  VACANCY_INPUT = (By.CLASS_NAME,'form-control')
+  VACANCY_SEARCH_BUTTON = (By.TAG_NAME, 'button')
+  VACANCY_RESULT_NULL = (By.XPATH,"//span[text()='შედეგი არ მოიძებნა']")
   POPUP = (By.CLASS_NAME, 'btn.btn-medium')

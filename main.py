@@ -20,7 +20,6 @@ class browser:
     return webdriver.Chrome(service=self.service,options=self.options)
 
 
-
 class titleSearch(unittest.TestCase):
 
   def setUp(self):
@@ -31,8 +30,7 @@ class titleSearch(unittest.TestCase):
 
   def test_vacancy_filter(self):
     Vacancy = page.MainPage(self.driver)
-    Vacancy.send_input = "abc"
-    assert Vacancy.search_start()
+    assert Vacancy.search_start(text='abc')
 
   def tearDown(self):
     self.driver.quit()
