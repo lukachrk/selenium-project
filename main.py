@@ -30,7 +30,8 @@ class titleSearch(unittest.TestCase):
 
   def test_vacancy_filter(self):
     Vacancy = page.MainPage(self.driver)
-    assert Vacancy.search_start(text='abc')
+    result = Vacancy.search_vacancy(text='mdzgoli')
+    self.assertTrue('შედეგი არ მოიძებნა' in result.text)
 
   def tearDown(self):
     self.driver.quit()

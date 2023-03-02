@@ -7,25 +7,31 @@ from selenium.webdriver.support.wait import WebDriverWait
 class BasePage:
   def __init__(self,driver):
     self.driver = driver
-"""
-subclass for finding every neccesary element on main page
-class variables: when created, the BasePageElement __get__ descriptor takes the locator and automatically finds it
-"""
+
 class MainPageElements(BasePage):
   Vacancy_input = BasePageElement(MainPageLocators.VACANCY_INPUT)
   no_vacancy_found = BasePageElement(MainPageLocators.VACANCY_RESULT_NULL)
   search_button = BasePageElement(MainPageLocators.VACANCY_SEARCH_BUTTON)
 
+class MainButtons(BasePage):
+  click_search_button = ClickablElement(MainPageLocators.VACANCY_SEARCH_BUTTON)
 
-class MainPage(BasePage):
-  def search_start(self, text):
-    page = MainPageElements(self.driver)
-    page.Vacancy_input #find the vacancy_input element (__get__ method invoked)
-    page.Vacancy_input = text #send the text argument to the element (__set__ method invoked)
-    page.search_button
-    page.search_button[9].click()
-    result = page.no_vacancy_found
+
+
+class MainPage:
+  def __init__(self, driver):
+    self.driver = driver
+
+    self.page = MainPageElements(self.driver)
+    self.buttons = MainButtons(self.driver)
+
+  def search_vacancy(self, text):
+    self.page.Vacancy_input
+    self.page.Vacancy_input = text
+    self.page.search_button.click()
+    result = self.page.no_vacancy_found
     return result
+
 
 class authModule(BasePage):
 

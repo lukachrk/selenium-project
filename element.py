@@ -29,17 +29,16 @@ class BasePageElement:
   def __get__(self,obj,owner):
     driver = obj.driver
     try:
-      element = WebDriverWait(driver, self.wait).until(lambda driver: driver.find_elements(*self.locator))
+      element = WebDriverWait(driver, self.wait).until(lambda driver: driver.find_element(*self.locator))
       return element
-    except:
+    except TimeoutError:
       return False
 
 class ClickablElement:
   def __init__(self, locator, wait = 100):
-    self.locator  = locator
+    self.locator = locator
 
     def __get__(self,obj,value):
       driver = obj.driver
-      WebDriverWait(driver, 100).until(
-        lambda driver: driver.find_element(*self.locator))
+      WebDriverWait(driver, 100).until(lambda driver: driver.find_element(*self.locator))
       driver.find_element(*self.locator).click()

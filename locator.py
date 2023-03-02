@@ -5,6 +5,6 @@ class authPageLocators:
 
 class MainPageLocators:
   VACANCY_INPUT = (By.CLASS_NAME,'form-control')
-  VACANCY_SEARCH_BUTTON = (By.TAG_NAME, 'button')
+  VACANCY_SEARCH_BUTTON = (By.XPATH, '//app-search-panel/div/div[3]/button')
   VACANCY_RESULT_NULL = (By.XPATH,"//span[text()='შედეგი არ მოიძებნა']")
   POPUP = (By.CLASS_NAME, 'btn.btn-medium')
