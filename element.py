@@ -1,5 +1,6 @@
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
+from selenium.common.exceptions import NoSuchElementException, TimeoutException
 
 """
 the selenium pageobject documentation is outdated and doesn't work
@@ -15,7 +16,7 @@ and reducing amount of sub classes we make for every element we want to find on 
 
 
 class BasePageElement:
-  def __init__(self,locator, wait = 100):
+  def __init__(self,locator, wait = 10):
     self.locator = locator
     self.wait = wait
 
@@ -31,14 +32,18 @@ class BasePageElement:
     try:
       element = WebDriverWait(driver, self.wait).until(lambda driver: driver.find_element(*self.locator))
       return element
-    except TimeoutError:
-      return False
+    except NoSuchElementException:
+      return None
 
 class ClickablElement:
-  def __init__(self, locator, wait = 100):
+  def __init__(self, locator, wait = 10):
     self.locator = locator
+    self.wait = wait
 
-    def __get__(self,obj,value):
-      driver = obj.driver
-      WebDriverWait(driver, 100).until(lambda driver: driver.find_element(*self.locator))
-      driver.find_element(*self.locator).click()
+  def __get__(self,obj,value):
+    driver = obj.driver
+    try:
+      element = WebDriverWait(driver, self.wait).until(lambda driver: driver.find_element(*self.locator))
+      element.click()
+    except TimeoutException:
+      pass

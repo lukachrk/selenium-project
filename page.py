@@ -13,17 +13,14 @@ class MainPageElements(BasePage):
   no_vacancy_found = BasePageElement(MainPageLocators.VACANCY_RESULT_NULL)
   search_button = BasePageElement(MainPageLocators.VACANCY_SEARCH_BUTTON)
 
-class MainButtons(BasePage):
-  click_search_button = ClickablElement(MainPageLocators.VACANCY_SEARCH_BUTTON)
-
-
+class MainPageButtons(BasePage):
+  click_login_button = ClickablElement(authPageLocators.Login_button)
 
 class MainPage:
   def __init__(self, driver):
     self.driver = driver
 
     self.page = MainPageElements(self.driver)
-    self.buttons = MainButtons(self.driver)
 
   def search_vacancy(self, text):
     self.page.Vacancy_input
@@ -34,10 +31,14 @@ class MainPage:
 
 
 class authModule(BasePage):
+  def __init__(self, driver):
+    self.driver = driver
+    self.buttons = MainPageButtons(self.driver)
+    self.elements = MainPageElements(self.driver)
 
   def Open_Login(self):
-    element  = self.driver.find_element(*authPageLocators.Login_button)
+    self.buttons.click_login_button
 
-  def Password(self):
+  def send_credentials(self):
     pass
 

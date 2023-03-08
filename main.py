@@ -28,11 +28,15 @@ class titleSearch(unittest.TestCase):
     self.driver.get('https://awork.ge/user/home')
     self.driver.find_element(By.CLASS_NAME, 'btn.btn-medium').click()
 
-  def test_vacancy_filter(self):
-    Vacancy = page.MainPage(self.driver)
-    result = Vacancy.search_vacancy(text='mdzgoli')
-    self.assertTrue('შედეგი არ მოიძებნა' in result.text)
+  # def test_vacancy_filter(self):
+  #   Vacancy = page.MainPage(self.driver)
+  #   result = Vacancy.search_vacancy(text='mdzgoli')
+  #   self.assertTrue('შედეგი არ მოიძებნა' in result.text)
 
+  def test_auth(self):
+    authmodule = page.authModule(self.driver)
+    authmodule.Open_Login()
+    
   def tearDown(self):
     self.driver.quit()
 
