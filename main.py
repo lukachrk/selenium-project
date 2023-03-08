@@ -20,7 +20,7 @@ class browser:
     return webdriver.Chrome(service=self.service,options=self.options)
 
 
-class titleSearch(unittest.TestCase):
+class MainTest(unittest.TestCase):
 
   def setUp(self):
     self.browser = browser()
@@ -28,15 +28,17 @@ class titleSearch(unittest.TestCase):
     self.driver.get('https://awork.ge/user/home')
     self.driver.find_element(By.CLASS_NAME, 'btn.btn-medium').click()
 
-  # def test_vacancy_filter(self):
-  #   Vacancy = page.MainPage(self.driver)
-  #   result = Vacancy.search_vacancy(text='mdzgoli')
-  #   self.assertTrue('შედეგი არ მოიძებნა' in result.text)
+  def test_vacancy_filter(self):
+    Vacancy = page.MainPage(self.driver)
+    result = Vacancy.search_vacancy(text='mdzgoli')
+    self.assertTrue('შედეგი არ მოიძებნა' in result.text)
 
   def test_auth(self):
     authmodule = page.authModule(self.driver)
-    authmodule.Open_Login()
-    
+    authmodule.open_auth_module()
+    authmodule.send_credentials(login = 599999999, password = 'abc1234')
+    authmodule.click_authorize()
+
   def tearDown(self):
     self.driver.quit()
 
