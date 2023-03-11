@@ -5,6 +5,7 @@ class authPageLocators:
   EMAIL_INPUT = (By.ID, 'floatingInput1')
   PASSWORD_INPUT = (By.ID, 'floatingInput2')
   AUTHORIZATION_BUTTON = (By.XPATH, "//button[text()=' ავტორიზაცია ']")
+  AUTHORIZATION_ALERT = (By.XPATH, "//div[text()=' ავტორიზაცია წარმატებულია ' or  text()=' მობილურის ნომერი ან პაროლი არასწორია ']")
 
 class MainPageLocators:
   VACANCY_INPUT = (By.CLASS_NAME, 'form-control')

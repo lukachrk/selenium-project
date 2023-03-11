@@ -2,17 +2,6 @@ from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.common.exceptions import NoSuchElementException, TimeoutException
 
-"""
-the selenium pageobject documentation is outdated and doesn't work
-my solution: decosntructing instance variable self.locator as a tuple from locator module
-since the driver.get_element_by_name has been removed 
-"""
-
-"""
-update: class elements take locator as an argument, thus removing the neccesity to inherit them into sub classes
-and reducing amount of sub classes we make for every element we want to find on the page
-"""
-
 
 class BasePageElement:
   def __init__(self,locator, wait = 100):
