@@ -4,7 +4,7 @@ from selenium.common.exceptions import NoSuchElementException, TimeoutException
 
 
 class BasePageElement:
-  def __init__(self,locator, wait = 100):
+  def __init__(self,locator: tuple, wait: int = 100):
     self.locator = locator
     self.wait = wait
 
@@ -12,7 +12,6 @@ class BasePageElement:
     driver = obj.driver
     WebDriverWait(driver, self.wait).until(
       lambda driver: driver.find_element(*self.locator))
-    driver.find_element(*self.locator).click()
     driver.find_element(*self.locator).clear()
     driver.find_element(*self.locator).send_keys(value)
 
@@ -25,7 +24,7 @@ class BasePageElement:
       return None
 
 class ClickablElement:
-  def __init__(self, locator, wait = 10):
+  def __init__(self, locator: tuple, wait: int = 10):
     self.locator = locator
     self.wait = wait
 

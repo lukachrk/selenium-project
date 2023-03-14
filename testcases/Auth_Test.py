@@ -1,5 +1,6 @@
 import unittest
 from testcases.DriverSetup import browser
+from PageObject import page
 from selenium.webdriver.common.by import By
 
 class AuthTest(unittest.TestCase):
@@ -10,7 +11,7 @@ class AuthTest(unittest.TestCase):
     self.driver = self.browser.get_driver()
     self.driver.get('https://awork.ge/user/home')
 
-    #close the popup, when page loaded
+    #close the popup, when page gets loaded
     self.driver.find_element(By.CLASS_NAME, 'btn.btn-medium').click()
 
   """
@@ -29,35 +30,36 @@ class AuthTest(unittest.TestCase):
     result = authmodule.click_authorize()
     self.assertIn('მობილურის ნომერი ან პაროლი არასწორია', result.text)  
     
-  # def test_auth_FT(self):
-  #   authmodule = page.authModule(self.driver)
-  #   authmodule.open_auth_module()
+  def test_auth_FT(self):
+    authmodule = page.authModule(self.driver)
+    authmodule.open_auth_module()
 
-  #   authmodule.send_credentials(login = '123', password = '123')
-  #   result = authmodule.click_authorize()
-  #   self.assertIn('მობილურის ნომერი ან პაროლი არასწორია', result.text)  
+    authmodule.send_credentials(login = '123', password = '123')
+    result = authmodule.click_authorize()
+    self.assertIn('მობილურის ნომერი ან პაროლი არასწორია', result.text)  
     
-  # def test_auth_FF(self):
-  #   authmodule = page.authModule(self.driver)
-  #   authmodule.open_auth_module()
+  def test_auth_FF(self):
+    authmodule = page.authModule(self.driver)
+    authmodule.open_auth_module()
 
-  #   authmodule.send_credentials(login = '123', password = '123')
-  #   result = authmodule.click_authorize()
-  #   self.assertIn('მობილურის ნომერი ან პაროლი არასწორია', result.text) 
+    authmodule.send_credentials(login = '123', password = '123')
+    result = authmodule.click_authorize()
+    self.assertIn('მობილურის ნომერი ან პაროლი არასწორია', result.text) 
 
-  # def test_auth_TT(self):
-  #   authmodule = page.authModule(self.driver)
-  #   authmodule.open_auth_module()
+  def test_auth_TT(self):
+    authmodule = page.authModule(self.driver)
+    authmodule.open_auth_module()
 
-  #   authmodule.send_credentials(login = '123', password = '123')
-  #   result = authmodule.click_authorize()
-  #   self.assertIn('მობილურის ნომერი ან პაროლი არასწორია', result.text)
+    #todo: need to create dummy account for authorization into system
+    authmodule.send_credentials(login = '123', password = '123')
+    result = authmodule.click_authorize()
+    self.assertIn('ავტორიზაცია წარმატებულია', result.text)
 
 
-  # def test_vacancy_filter(self):
-  #   Vacancy = page.MainPage(self.driver)
-  #   result = Vacancy.search_vacancy(text='mdzgoli')
-  #   self.assertTrue('შედეგი არ მოიძებნა' in result.text)
+  def test_vacancy_filter(self):
+    Vacancy = page.MainPage(self.driver)
+    result = Vacancy.search_vacancy(text='mdzgoli')
+    self.assertTrue('შედეგი არ მოიძებნა' in result.text)
 
   def tearDown(self):
     self.driver.quit()
