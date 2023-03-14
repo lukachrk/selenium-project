@@ -57,9 +57,9 @@ open up cmd, type: `python main.py`
 
 ## Roadmap
 
-- [x] Add test cases for the main page components
-- [x] Add test cases for the profile page components
-- [x] add the ability to automatically detect chrome webdriver
+- [] Add test cases for the main page components
+- [] Add test cases for the profile page components
+- [] add the ability to automatically detect chrome webdriver
 
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
