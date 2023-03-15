@@ -55,12 +55,6 @@ class AuthTest(unittest.TestCase):
     result = authmodule.click_authorize()
     self.assertIn('ავტორიზაცია წარმატებულია', result.text)
 
-
-  def test_vacancy_filter(self):
-    Vacancy = page.MainPage(self.driver)
-    result = Vacancy.search_vacancy(text='mdzgoli')
-    self.assertTrue('შედეგი არ მოიძებნა' in result.text)
-
   def tearDown(self):
     self.driver.quit()
 

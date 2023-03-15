@@ -18,13 +18,16 @@ class AuthTest(unittest.TestCase):
 
     #provide your credentials here to authorize into system
     authmodule.send_credentials(login = '', password = '')
+
     authmodule.click_authorize()
+    authmodule.navigate_to_profile()
 
   def test_navigation(self):
-    pass
+    navigation = page.Profile(self.driver)
+    print(navigation.check_navigation())
 
-  def test_about_section(self):
-    pass
+  # def test_about_section(self):
+  #   pass
 
   def tearDown(self):
     self.driver.quit()
