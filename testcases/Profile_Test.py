@@ -20,12 +20,27 @@ class AuthTest(unittest.TestCase):
     authmodule.send_credentials(login = '', password = '')
 
     authmodule.click_authorize()
-    authmodule.navigate_to_profile()
+    self.driver.get("https://awork.ge/user/profile")
 
   def test_navigation(self):
     navigation = page.Profile(self.driver)
-    print(navigation.check_navigation())
 
+    navigation.navigate_to(navlink='პროფილი')
+    self.assertIn('nav=profile', self.driver.current_url) 
+
+    navigation.navigate_to(navlink='გაგზავნილი აპლიკაციები')
+    self.assertIn('nav=sent', self.driver.current_url)    
+
+    navigation.navigate_to(navlink='შენახული ვაკანსიები')
+    self.assertIn('nav=saved', self.driver.current_url)    
+
+    navigation.navigate_to(navlink='სამუშაოს შეტყობინებები')
+    self.assertIn('nav=job_alerts', self.driver.current_url)    
+
+    navigation.navigate_to(navlink='პარამეტრები')
+    self.assertIn('nav=settings', self.driver.current_url)
+
+  
   # def test_about_section(self):
   #   pass
 

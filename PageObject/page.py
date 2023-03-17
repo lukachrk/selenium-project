@@ -16,16 +16,21 @@ class MainPageElements(BasePage):
 
 class AuthElements(BasePage):
   open_module = ClickablElement(authPageLocators.Login_button)
+
   login = BasePageElement(authPageLocators.EMAIL_INPUT)
   password = BasePageElement(authPageLocators.PASSWORD_INPUT)
+
   click_authorization = ClickablElement(authPageLocators.AUTHORIZATION_BUTTON)
   auth_alert = BasePageElement(authPageLocators.AUTHORIZATION_ALERT)
-  click_hamburger_nav = ClickablElement(MainPageLocators.HAMBURGER_DROPDOWN)
-  open_profile = ClickablElement(MainPageLocators.HAMBURGER_PROFILE)
+
   
 
 class ProfileElements(BasePage):
-  nav_links = ClickablElement(ProfileLocators.NAVIGATION_LINKS, elements = True, wait = 100)
+  nav_links = ClickablElement(ProfileLocators.NAVIGATION_LINKS, elements = True)
+  center_cards = ClickablElement(ProfileLocators.CCARDS_EBUTTONS, elements = True)
+  right_cards = ClickablElement(ProfileLocators.RCARDS_EBUTTONS, elements = True)
+  nav_links = ClickablElement(ProfileLocators.NAVIGATION_LINKS, elements = True)
+
 
 class MainPage:
   def __init__(self, driver):
@@ -61,14 +66,14 @@ class authModule:
     response = self.elements.auth_alert
     return response
 
-  def navigate_to_profile(self):
-    self.elements.click_hamburger_nav
-    self.elements.open_profile
-
 class Profile:
   def __init__(self, driver):
     self.driver = driver
     self.elements = ProfileElements(self.driver)
   
-  def check_navigation(self, navlink:str = None):
-    return self.elements.nav_links
+  def navigate_to(self, navlink:str = None): 
+    result = self.elements.nav_links
+    links = {elem.text: elem for elem in result}
+    WebDriverWait(self.driver, 5)
+    links[navlink].click()
+
