@@ -27,9 +27,15 @@ class AuthElements(BasePage):
 
 class ProfileElements(BasePage):
   nav_links = ClickablElement(ProfileLocators.NAVIGATION_LINKS, elements = True)
+
+  #Profile page card buttons (add, edit)
   center_cards = ClickablElement(ProfileLocators.CCARDS_EBUTTONS, elements = True)
   right_cards = ClickablElement(ProfileLocators.RCARDS_EBUTTONS, elements = True)
-  nav_links = ClickablElement(ProfileLocators.NAVIGATION_LINKS, elements = True)
+  contactinfo_card = ClickablElement(ProfileLocators.CONTACTINFO_BUTTONS, elements = True)
+
+  #Profile page module labels/inputs
+  module_labels = ClickablElement(ProfileLocators.MODULE_LABELS, elements = True)
+  module_inputs = ClickablElement(ProfileLocators.MODULE_INPUTS, elements = True)
 
 
 class MainPage:
