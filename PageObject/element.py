@@ -11,7 +11,6 @@ class MainElement:
     self.elements = elements
 
 class BasePageElement(MainElement):
-
   def __set__(self,obj,value):
     driver = obj.driver
     WebDriverWait(driver, self.wait).until(

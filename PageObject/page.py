@@ -9,10 +9,12 @@ class BasePage:
   def __init__(self,driver):
     self.driver = driver
 
+
 class MainPageElements(BasePage):
   Vacancy_input = BasePageElement(MainPageLocators.VACANCY_INPUT)
   no_vacancy_found = BasePageElement(MainPageLocators.VACANCY_RESULT_NULL)
   search_button = BasePageElement(MainPageLocators.VACANCY_SEARCH_BUTTON)
+
 
 class AuthElements(BasePage):
   open_module = ClickablElement(authPageLocators.Login_button)
@@ -28,14 +30,12 @@ class AuthElements(BasePage):
 class ProfileElements(BasePage):
   nav_links = ClickablElement(ProfileLocators.NAVIGATION_LINKS, elements = True)
 
-  #Profile page card buttons (add, edit)
-  center_cards = ClickablElement(ProfileLocators.CCARDS_EBUTTONS, elements = True)
-  right_cards = ClickablElement(ProfileLocators.RCARDS_EBUTTONS, elements = True)
-  contactinfo_card = ClickablElement(ProfileLocators.CONTACTINFO_BUTTONS, elements = True)
+  upload_cv = ClickablElement(ProfileLocators.MY_CV)
+  click_save = ClickablElement(ProfileLocators.SAVE_BUTTON)
+  open_dropdown = ClickablElement(ProfileLocators.DROPDOWNS)
+  check_label = ClickablElement(ProfileLocators.FORM_CHECK)
 
-  #Profile page module labels/inputs
-  module_labels = ClickablElement(ProfileLocators.MODULE_LABELS, elements = True)
-  module_inputs = ClickablElement(ProfileLocators.MODULE_INPUTS, elements = True)
+
 
 
 class MainPage:
@@ -47,7 +47,7 @@ class MainPage:
     #basepageelement class __get__ method invoked
     self.page.Vacancy_input
 
-    #basepageelement class __set__ method invoked
+    #BasePageElement class __set__ method invoked
     self.page.Vacancy_input = text
 
     self.page.search_button.click()
@@ -72,6 +72,7 @@ class authModule:
     response = self.elements.auth_alert
     return response
 
+
 class Profile:
   def __init__(self, driver):
     self.driver = driver
@@ -80,6 +81,29 @@ class Profile:
   def navigate_to(self, navlink:str = None): 
     result = self.elements.nav_links
     links = {elem.text: elem for elem in result}
-    WebDriverWait(self.driver, 5)
+
+    self.driver.implicitly_wait(10)
     links[navlink].click()
 
+  def open_module(self, module:str):
+    self.driver.implicitly_wait(10)
+    self.driver.find_element(By.XPATH, ProfileLocators.PROFILE_CARDS[module]).click()
+
+
+  def fill_out(self, module:str, data: tuple):
+    module_dicts = ProfileLocators.MODULE_ELEMENTS[module]
+    #nested for loop list comprehention to get locators from module dict keys
+    module_locators = [value for dicts in module_dicts for value in dicts.values()]
+
+    for i in range(len(module_locators)):
+      self.driver.implicitly_wait(10)
+
+      module_element = self.driver.find_element(*module_locators[i])
+      module_element.clear()
+      module_element.send_keys(data[i])
+  
+
+  def select_option(self,options):
+    pass
+
+  
