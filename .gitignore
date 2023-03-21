@@ -1,6 +1,7 @@
 /__pycache__
 /testcases/__pycache__
 /PageObject/__pycache__
+/src/Main/TestData/secret_keys.py
 
 # Byte-compiled / optimized / DLL files
 *.py[cod]

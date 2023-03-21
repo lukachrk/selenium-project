@@ -6,10 +6,9 @@
 
 
 ## About The Project
-selenium gui automatization project for automating manual test cases for awork.ge website
+Selenium gui automatization project for testing talent acqusition website "awork.ge"
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
-
 
 
 ## Getting Started
@@ -17,12 +16,12 @@ To get a local copy up and running follow these steps.
 
 ### Prerequisites
 * Python v3.10+
-* Chrome browser v: 111+
-* Chrome webdriver v:111.0.5563.64 https://chromedriver.storage.googleapis.com/index.html?path=111.0.5563.64/
+* Chrome browser v:111+
+* Chrome webdriver v:111.0.5563.64 (included in repo)
 
 ### Installation
  
-1. clone the repository git clone lukachrk/selenium-project
+1. clone the repository
    ```sh
    git clone https://github.com/lukachrk/selenium-project
    ```
@@ -45,11 +44,10 @@ To get a local copy up and running follow these steps.
 
 
 ## Usage
-head to testcases/Auth_Test.py and on the line 10, change the path to your chrome driver location!
-
 for the time being, test cases are written only for authorization only
 
-open up cmd, type: `python main.py`
+open up cmd, type: `python main.py` to run authentication tests
+
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -60,7 +58,8 @@ open up cmd, type: `python main.py`
 
 - [ ] Add test cases for the main page components
 - [ ] Add test cases for the profile page components
-- [ ] add the ability to automatically detect chrome webdriver
+- [x] add the ability to automatically detect chrome webdriver
+- [x] add reusable test data for different modules
 
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>

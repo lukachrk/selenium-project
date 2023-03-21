@@ -4,7 +4,7 @@ from selenium.webdriver.chrome.options import Options
 
 
 class browser:
-  def __init__(self, path):
+  def __init__(self, path ='src/Main/utils/chromedriver.exe'):
     self.path = path
     self.service = Service(self.path)
     self.options = Options()

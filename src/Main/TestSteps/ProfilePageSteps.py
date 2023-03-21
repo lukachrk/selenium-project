@@ -1,5 +1,6 @@
 from selenium.webdriver.common.by import By
 from src.Main.PageObject.ProfilePage import ProfileElements
+from src.Main.PageObject.locators.locator import ProfileLocators
 
 class Profile:
   def __init__(self, driver):
@@ -30,6 +31,9 @@ class Profile:
       module_element.clear()
       module_element.send_keys(data[i])
   
-
+  def is_button_enabled(self):
+    button = self.elements.save_button
+    return button.is_enabled()
+    
   def select_option(self,options):
     pass

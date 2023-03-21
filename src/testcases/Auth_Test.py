@@ -1,20 +1,28 @@
 import unittest
-from testcases.DriverSetup import browser
-from PageObject import page
 from selenium.webdriver.common.by import By
+from src.Main.utils.DriverSetup import browser
+from src.Main.TestSteps import AuthModuleSteps
+from src.Main.TestData.secret_keys import SecretKeys as SKEYS
+
 
 class AuthTest(unittest.TestCase):
-
-  def setUp(self):
-    #change the path to your driver directory
-    self.browser = browser(path='C:/Users/luka/Documents/chromedriver.exe')
-    self.driver = self.browser.get_driver()
-    self.driver.get('https://awork.ge/user/home')
+  @classmethod
+  def setUpClass(cls):
+    chrome_driver = browser()
+    cls.driver = chrome_driver.get_driver()
+    cls.steps = AuthModuleSteps.authModule(cls.driver)
+    cls.driver.get('https://awork.ge/user/home')
 
     #close the popup, when page gets loaded
-    self.driver.find_element(By.CLASS_NAME, 'btn.btn-medium').click()
+    cls.driver.find_element(By.CLASS_NAME, 'btn.btn-medium').click()
+    cls.steps.open_auth_module()
+
+  @classmethod
+  def tearDownClass(cls):
+    cls.driver.quit()
 
   """
+  decision table based test case to test authentication
   TF - Login(true), password(false)
   FT - Login(false), password(true)
   FF - Login(false), password(false)
@@ -22,41 +30,26 @@ class AuthTest(unittest.TestCase):
   """
 
 
-  def test_auth_TF(self):
-    authmodule = page.authModule(self.driver)
-    authmodule.open_auth_module()
-
-    authmodule.send_credentials(login = '123', password = '123')
-    result = authmodule.click_authorize()
+  def test_1_auth_TF(self):
+    self.steps.send_credentials(login = SKEYS.login, password = SKEYS.invalid_password)
+    result = self.steps.click_authorize()
     self.assertIn('მობილურის ნომერი ან პაროლი არასწორია', result.text)  
     
-  def test_auth_FT(self):
-    authmodule = page.authModule(self.driver)
-    authmodule.open_auth_module()
-
-    authmodule.send_credentials(login = '123', password = '123')
-    result = authmodule.click_authorize()
+  def test_2_auth_FT(self):
+    self.steps.send_credentials(login = SKEYS.invalid_login, password = SKEYS.Password)
+    result = self.steps.click_authorize()
     self.assertIn('მობილურის ნომერი ან პაროლი არასწორია', result.text)  
     
-  def test_auth_FF(self):
-    authmodule = page.authModule(self.driver)
-    authmodule.open_auth_module()
-
-    authmodule.send_credentials(login = '123', password = '123')
-    result = authmodule.click_authorize()
+  def test_3_auth_FF(self):
+    self.steps.send_credentials(login = SKEYS.invalid_login, password = SKEYS.invalid_password)
+    result = self.steps.click_authorize()
     self.assertIn('მობილურის ნომერი ან პაროლი არასწორია', result.text) 
 
-  def test_auth_TT(self):
-    authmodule = page.authModule(self.driver)
-    authmodule.open_auth_module()
-
-    #todo: need to create dummy account for authorization into system
-    authmodule.send_credentials(login = '123', password = '123')
-    result = authmodule.click_authorize()
+  def test_4_auth_TT(self):
+    self.steps.send_credentials(login = SKEYS.login, password = SKEYS.Password)
+    result = self.steps.click_authorize()
     self.assertIn('ავტორიზაცია წარმატებულია', result.text)
 
-  def tearDown(self):
-    self.driver.quit()
 
 if __name__ == '__main__':
   unittest.main()

@@ -8,6 +8,7 @@ class ProfileElements:
   nav_links = ClickablElement(ProfileLocators.NAVIGATION_LINKS, elements = True)
 
   upload_cv = ClickablElement(ProfileLocators.MY_CV)
+  save_button = BasePageElement(ProfileLocators.SAVE_BUTTON)
   click_save = ClickablElement(ProfileLocators.SAVE_BUTTON)
   open_dropdown = ClickablElement(ProfileLocators.DROPDOWNS)
   check_label = ClickablElement(ProfileLocators.FORM_CHECK)

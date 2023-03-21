@@ -1,27 +1,29 @@
 import unittest
-from testcases.DriverSetup import browser
-from PageObject import page
+from src.Main.utils.DriverSetup import browser
+from src.Main.TestSteps import MainPageSteps
 from selenium.webdriver.common.by import By
 
 class AuthTest(unittest.TestCase):
-
-  def setUp(self):
-    #change the path to your driver directory
-    self.browser = browser(path='C:/Users/luka/Documents/chromedriver.exe')
-    self.driver = self.browser.get_driver()
-    self.driver.get('https://awork.ge/user/home')
+  @classmethod
+  def setUpClass(cls):
+    chrome_driver = browser()
+    cls.driver = chrome_driver.get_driver()
+    cls.steps = MainPageSteps.MainPage(cls.driver)
+    cls.driver.get('https://awork.ge/user/home')
 
     #close the popup, when page gets loaded
-    self.driver.find_element(By.CLASS_NAME, 'btn.btn-medium').click()
+    cls.driver.find_element(By.CLASS_NAME, 'btn.btn-medium').click()
 
-  #search for a vacancy that couldn't be in the db
+  @classmethod
+  def tearDownClass(cls):
+    cls.driver.quit()
+
+
+  #test whetever we get error messeage or not for searching for a vacancy that can't be found
   def test_vacancy_filter(self):
-    Vacancy = page.MainPage(self.driver)
-    result = Vacancy.search_vacancy(text='mdzgoli')
+    result = self.steps.search_vacancy(text='abc123')
     self.assertTrue('შედეგი არ მოიძებნა' in result.text)
 
-  def tearDown(self):
-    self.driver.quit()
 
 if __name__ == '__main__':
   unittest.main()
