@@ -1,7 +1,7 @@
 from selenium.webdriver.common.by import By
 
 class authPageLocators:
-  Login_button = (By.CLASS_NAME, 'btn.color-base.login-btn.font-bold.ng-tns-c78-1.ng-star-inserted')
+  Login_button = (By.XPATH, "//button[text()=' შესვლა ']")
 
   EMAIL_INPUT = (By.ID, 'floatingInput1')
   PASSWORD_INPUT = (By.ID, 'floatingInput2')
@@ -29,25 +29,28 @@ class ProfileLocators:
 
   #elements: work experience, education, projects, get to know user, skills, languages, certificates
   PROFILE_CARDS = {
-    'ჩემს შესახებ' : "//div[contains(@class, 'col-md-7')]/div[2]/div[4]/div/div/div",
-    'სამუშაო გამოცდილება' : "//div[contains(@class, 'col-md-7')]/div[3]/div[1]/div",
-    'განათლება' : "//div[contains(@class, 'col-md-7')]/div[4]/div[1]/div",
-    'პროექტები' : "//div[contains(@class, 'col-md-7')]/div[5]/div[1]/div",
-    'გაიცანი მომხმარებელი' : "//div[contains(@class, 'col-md-5')]/div[3]/div[1]/div",
-    'უნარები' : "//div[contains(@class, 'col-md-5')]/div[5]/div[1]/div",
-    'ენები' : "//div[contains(@class, 'col-md-5')]/div[6]/div[1]/div",
-    'სერტიფიკატები' : "//div[contains(@class, 'col-md-5')]/div[7]/div[1]/div",
-    'მისამართი' : "//div[contains(@class, 'col-md-5')]/div[4]/div[2]/div[2]",
-    'ნომერი' : "//div[contains(@class, 'col-md-5')]/div[4]/div[3]/div[2]",
-    'ელფოსტა' : "//div[contains(@class, 'col-md-5')]/div[4]/div[4]/div[2]",
-    'სოცქსელები' : "//div[contains(@class, 'col-md-5')]/div[4]/div[5]/div[2]"
+    'PROFILE_UPDATE':  "//div[contains(@class, 'col-md-7')]/div[2]/div[4]/div/div/div",
+    'WORK_EXPERIENCE':  "//div[contains(@class, 'col-md-7')]/div[3]/div[1]/div",
+    'EDUCATION':  "//div[contains(@class, 'col-md-7')]/div[4]/div[1]/div",
+    'PROJECTS':  "//div[contains(@class, 'col-md-7')]/div[5]/div[1]/div",
+    'KNOW_USER':  "//div[contains(@class, 'col-md-5')]/div[3]/div[1]/div",
+    'SKILLS':  "//div[contains(@class, 'col-md-5')]/div[5]/div[1]/div",
+    'LANGUAGES':  "//div[contains(@class, 'col-md-5')]/div[6]/div[1]/div",
+    'CERTIFICATES':  "//div[contains(@class, 'col-md-5')]/div[7]/div[1]/div",
+    'ADDRESS':  "//div[contains(@class, 'col-md-5')]/div[4]/div[2]/div[2]",
+    'PHONE_NUMBER':  "//div[contains(@class, 'col-md-5')]/div[4]/div[3]/div[2]",
+    'EMAIL':  "//div[contains(@class, 'col-md-5')]/div[4]/div[4]/div[2]",
+    'SOCIALS':  "//div[contains(@class, 'col-md-5')]/div[4]/div[5]/div[2]"
     }
   #cv upload card
   MY_CV = (By.XPATH, "//div[contains(@class, 'col-md-5')]/div[2]")
 
   #GENERAL ELEMENTS THAT ALL MODULES SHARE
   #modules save button
-  SAVE_BUTTON = (By.XPATH, "//div[text() = 'შენახვა']")
+  SAVE_BUTTON = (By.XPATH, "//button[text() = ' შენახვა ']")
+
+  #modules close button
+  CLOSE_BUTTON = (By.CLASS_NAME, "btn-close")
 
   #module dropdowns
   DROPDOWNS = (By.XPATH, "//ng-select")
@@ -57,29 +60,30 @@ class ProfileLocators:
 
   #individual module elements
   MODULE_ELEMENTS = {
-    'about_module':[
-      {'NAME':(By.ID, 'first_name')},
-      {'SURNAME': (By.ID, 'last_name')},
-      {'PROFESSION': (By.ID, 'title')},
-    ],
-    'education':[
-      {'UNIVERSITY': (By.ID, 'institution')},
-      {'FACULTY': (By.ID, 'faculty')},
-      {'DEGREE': (By.ID, 'degree')},
-      {'GPA': (By.ID, 'grade')}
-    ],
-    'work_experience':[
-      {'NAME_URL': (By.ID, 'title')},
-    ],
-    'socials':[
-      {'FACEBOOK': (By.ID, 'facebook')},
-      {'TWITTER': (By.ID, 'twitter')},
-      {'LINKEDIN': (By.ID, 'linkedin')},
-      {'DRIBBLE': (By.ID, 'dribble')},
-      {'BEHANCE': (By.ID, 'behance')},
-      {'OTHER': (By.ID, 'other')}
-    ]
+    'about_module':{
+      'NAME':(By.ID, 'first_name'),
+      'SURNAME': (By.ID, 'last_name'),
+      'PROFESSION': (By.ID, 'title'),
+    },
+    'education':{
+      'UNIVERSITY': (By.ID, 'institution'),
+      'FACULTY': (By.ID, 'faculty'),
+      'DEGREE': (By.ID, 'degree'),
+      'GPA': (By.ID, 'grade')
+    },
+    'work_experience':{
+      'NAME_URL': (By.ID, 'title'),
+    },
+    'socials':{
+      'FACEBOOK': (By.ID, 'facebook'),
+      'TWITTER': (By.ID, 'twitter'),
+      'LINKEDIN': (By.ID, 'linkedin'),
+      'DRIBBLE': (By.ID, 'dribble'),
+      'BEHANCE': (By.ID, 'behance'),
+      'OTHER': (By.ID, 'other')
+    }
   }
+
 
 
 

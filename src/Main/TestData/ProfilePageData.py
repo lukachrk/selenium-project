@@ -1,9 +1,8 @@
 from dataclasses import dataclass
-import typing
 
 @dataclass(frozen=True)
 class ProfileData:
-  name: str = 'abc'
+  valid_name: str = 'luka'
   invalid_name: int = '123'
   surname: str = 'def'
   invalid_surname: int = '456'

@@ -1,9 +1,11 @@
 import unittest
+from selenium.webdriver.common.by import By
 from src.Main.utils.DriverSetup import browser
 from src.Main.TestSteps import AuthModuleSteps, ProfilePageSteps
-from selenium.webdriver.common.by import By
-from src.Main.TestData.ProfilePageData import ProfileData as PFD
+from src.Main.TestData.ProfilePageData import ProfileData as PFData
+from src.Main.TestData.GeneralData import generaldata as GLData
 from src.Main.TestData.secret_keys import SecretKeys as SKEYS
+from src.testcases.TestDescription import description
 
 class Profile_test(unittest.TestCase):
   @classmethod
@@ -44,15 +46,35 @@ class Profile_test(unittest.TestCase):
     self.steps.navigate_to(navlink = 'პარამეტრები')
     self.assertIn('nav=settings', self.driver.current_url)
 
-  
-  def test_2_about_module_inputs_validation(self):
+  @description("Test profile update module fields validation when entering numbers")
+  def test_2_pu_module_fields_validation_for_numbers(self):
     self.steps.navigate_to('პროფილი')
-    self.steps.open_module('ჩემს შესახებ')
-    input_data = (PFD.name, PFD.surname, PFD.profession)
+    self.steps.open_module('PROFILE_UPDATE')
 
-    self.steps.fill_out(module='about_module', data=input_data)
-    assert self.steps.is_button_enabled()
+    self.steps.fill_out_fields(module='about_module', data=GLData.numbers)
+    self.assertFalse(self.steps.is_save_button_enabled())
 
+  @description("Test profile update module fields validation when entering spacings")
+  def test_3_pu_module_fields_validation_for_spacings(self):
+    self.steps.fill_out_fields(module='about_module', data=GLData.spacings)
+    self.assertFalse(self.steps.is_save_button_enabled())
+
+  @description("Test profile update module fields validation when entering letters seperated by space")
+  def test_4_pu_module_fields_validation_for_spaced_inputs(self):
+    self.steps.fill_out_fields(module='about_module', data=GLData.spaced_letters)
+    self.assertFalse(self.steps.is_save_button_enabled())  
+    
+  @description("Test profile update module fields validation when entering too many characters")
+  def test_5_pu_module_fields_validation_for_too_many_chars(self):
+    self.steps.fill_out_fields(module='about_module', data=GLData.too_many_chars)
+    self.assertFalse(self.steps.is_save_button_enabled())  
+    
+  @description("Test work experience module, when skipping mandatory field")
+  def test_6_wx_module_mandatory_fields_validation(self):
+    self.steps.fill_out_fields(module='about_module', data=GLData.too_many_chars)
+    self.assertFalse(self.steps.is_save_button_enabled())
+
+  
 
 if __name__ == '__main__':
   unittest.main()

@@ -12,3 +12,4 @@ class ProfileElements:
   click_save = ClickablElement(ProfileLocators.SAVE_BUTTON)
   open_dropdown = ClickablElement(ProfileLocators.DROPDOWNS)
   check_label = ClickablElement(ProfileLocators.FORM_CHECK)
+  close_button = ClickablElement(ProfileLocators.CLOSE_BUTTON)
