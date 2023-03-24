@@ -33,7 +33,7 @@ class Profile:
 
 
   def fill_out_fields(self, module:str, data: str) -> None:
-    locators = values = [value for value in ProfileLocators.MODULE_ELEMENTS[module].values()]
+    locators = [value for value in ProfileLocators.MODULE_ELEMENTS[module].values()]
 
     for i in locators:
       self.driver.implicitly_wait(10)

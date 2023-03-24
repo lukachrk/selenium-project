@@ -27,7 +27,7 @@ class ProfileLocators:
   NAVIGATION_LINKS = (By.XPATH, 
   "//div[contains(concat(' ', normalize-space(@class), ' '), ' profile-nav-link')]")
 
-  #elements: work experience, education, projects, get to know user, skills, languages, certificates
+  #Edit buttons of Profile Page Cards 
   PROFILE_CARDS = {
     'PROFILE_UPDATE':  "//div[contains(@class, 'col-md-7')]/div[2]/div[4]/div/div/div",
     'WORK_EXPERIENCE':  "//div[contains(@class, 'col-md-7')]/div[3]/div[1]/div",
@@ -58,9 +58,9 @@ class ProfileLocators:
   #form check
   FORM_CHECK = (By.XPATH, "//label[contains(@class, 'form-check-label')]")
 
-  #individual module elements
+  #individual module input field elements
   MODULE_ELEMENTS = {
-    'about_module':{
+    'profile_update':{
       'NAME':(By.ID, 'first_name'),
       'SURNAME': (By.ID, 'last_name'),
       'PROFESSION': (By.ID, 'title'),
@@ -72,7 +72,8 @@ class ProfileLocators:
       'GPA': (By.ID, 'grade')
     },
     'work_experience':{
-      'NAME_URL': (By.ID, 'title'),
+      'POSITION': (By.ID, 'position'),
+      'EMPLOYER': (By.ID, 'employer'),
     },
     'socials':{
       'FACEBOOK': (By.ID, 'facebook'),
