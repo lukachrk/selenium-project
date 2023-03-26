@@ -58,6 +58,9 @@ class ProfileLocators:
   #form check
   FORM_CHECK = (By.XPATH, "//label[contains(@class, 'form-check-label')]")
 
+  #invalid format text
+  INVALID_FORMAT = (By.XPATH, "//small[contains(@class, 'color-hot')]")
+
   #individual module input field elements
   MODULE_ELEMENTS = {
     'profile_update':{
