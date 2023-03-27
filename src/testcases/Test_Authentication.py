@@ -1,23 +1,15 @@
-import unittest
 from src.Main.TestSteps import Steps_Authentication
 from src.Main.TestData.secret_keys import SecretKeys as SKEYS
+from src.testcases.TestSetup.Setup_BaseTest import BaseSetupClass
 
 
-class AuthTest(unittest.TestCase):
+class AuthTest(BaseSetupClass):
   @classmethod
   def setUpClass(cls):
-    chrome_driver = browser()
-    cls.driver = chrome_driver.get_driver()
+    super().setUpClass()
     cls.steps = Steps_Authentication.AuthModule(self.driver)
-    cls.driver.get('https://awork.ge/user/home')
-
-    #close the popup, when page gets loaded
-    cls.driver.find_element(By.CLASS_NAME, 'btn.btn-medium').click()
     cls.steps.open_auth_module()
 
-  @classmethod
-  def tearDownClass(cls):
-    cls.driver.quit()
 
   """
   decision table based test case to test authentication
