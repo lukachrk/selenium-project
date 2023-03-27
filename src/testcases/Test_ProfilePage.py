@@ -1,10 +1,10 @@
 import unittest
-from src.Main.TestData.ProfilePageData import ProfileData as PFData
-from src.Main.TestData.GeneralData import generaldata as GLData
-from src.Main.PageObject.locators.ProfilePageLocators import *
+from src.Main.TestData.Data_ProfilePage import ProfileData as PFData
+from src.Main.TestData.Data_General import generaldata as GLData
+from src.Main.PageObject.Locators.Locators_ProfilePage import *
 
-from src.testcases.TestDescription import description
-from src.testcases.BaseTestSetups.ProfileSetup import *
+from src.testcases.TestSetup.TestDescription import description
+from src.testcases.TestSetup.ProfileSetup import *
 
 
 class ProfileUpdate_Module_test(unittest.TestCase):
@@ -48,3 +48,5 @@ class ExperienceModule_Test(unittest.TestCase):
 
 if __name__ == '__main__':
   unittest.main()
+
+

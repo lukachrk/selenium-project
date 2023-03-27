@@ -1,7 +1,5 @@
 import unittest
-from selenium.webdriver.common.by import By
-from src.Main.utils.DriverSetup import browser
-from src.Main.TestSteps import AuthModuleSteps
+from src.Main.TestSteps import Steps_Authentication
 from src.Main.TestData.secret_keys import SecretKeys as SKEYS
 
 
@@ -10,7 +8,7 @@ class AuthTest(unittest.TestCase):
   def setUpClass(cls):
     chrome_driver = browser()
     cls.driver = chrome_driver.get_driver()
-    cls.steps = AuthModuleSteps.authModule(cls.driver)
+    cls.steps = Steps_Authentication.AuthModule(self.driver)
     cls.driver.get('https://awork.ge/user/home')
 
     #close the popup, when page gets loaded

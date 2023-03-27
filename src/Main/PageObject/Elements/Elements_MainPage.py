@@ -1,5 +1,5 @@
-from src.Main.PageObject.locators.element import *
-from src.Main.PageObject.locators.locator import MainPageLocators
+from src.Main.PageObject.Elements.element import *
+from src.Main.PageObject.Locators.Locators_MainPage import MainPageLocators
 
 class MainPageElements:
   def __init__(self, driver):

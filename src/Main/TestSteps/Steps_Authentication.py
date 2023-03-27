@@ -1,7 +1,7 @@
 from selenium.webdriver.common.by import By
-from src.Main.PageObject.AuthModule import AuthElements
+from src.Main.PageObject.Elements.Elements_AuthModule import AuthElements
 
-class authModule:
+class AuthModule:
   def __init__(self, driver):
     self.driver = driver
     self.elements = AuthElements(self.driver)
@@ -15,5 +15,3 @@ class authModule:
   
   def click_authorize(self):
     self.elements.click_authorization
-    response = self.elements.auth_alert
-    return response

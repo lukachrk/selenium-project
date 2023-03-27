@@ -1,14 +1,16 @@
 import unittest
+from src.Main.TestSteps import Steps_MainPage
 from src.Main.utils.DriverSetup import browser
-from src.Main.TestSteps import MainPageSteps
 from selenium.webdriver.common.by import By
+from src.testcases.TestSetup.TestDescription import description
+
 
 class AuthTest(unittest.TestCase):
   @classmethod
   def setUpClass(cls):
     chrome_driver = browser()
     cls.driver = chrome_driver.get_driver()
-    cls.steps = MainPageSteps.MainPage(cls.driver)
+    cls.steps = Steps_MainPage.MainPage(cls.driver)
     cls.driver.get('https://awork.ge/user/home')
 
     #close the popup, when page gets loaded

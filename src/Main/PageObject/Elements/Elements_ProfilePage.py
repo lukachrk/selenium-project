@@ -1,6 +1,5 @@
-from src.Main.PageObject.locators.element import *
-from src.Main.PageObject.locators.locator import ProfileLocators
-from src.Main.PageObject.locators import ProfilePageLocators 
+from src.Main.PageObject.Elements.element import *
+from src.Main.PageObject.Locators.Locators_ProfilePage import ProfileLocators
 
 
 

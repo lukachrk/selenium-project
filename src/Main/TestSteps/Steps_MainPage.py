@@ -1,5 +1,4 @@
-from selenium.webdriver.common.by import By
-from src.Main.PageObject.MainPage import MainPageElements
+from src.Main.PageObject.Elements.Elements_MainPage import MainPageElements
 
 class MainPage:
   def __init__(self, driver):
