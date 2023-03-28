@@ -1,5 +1,6 @@
 from src.Main.PageObject.Elements.Elements_ProfilePage import *
-
+from selenium.common.exceptions import NoSuchElementException
+from selenium.webdriver.common.by import By
 import typing
 
 class Profile:
@@ -28,8 +29,20 @@ class Profile:
     field_element = FieldElements(self.driver,field)
     field_element.send_input(data)
 
-  
-  def select_option(self,options) -> None:
+  def fill_out_mandatory_fields(self, data) -> None:
+    fields = self.element.mandatory_fields
+
+    for i in fields:
+      try:
+        mandatory_text = i.find_element(By.XPATH, ".//small")
+        if(mandatory_text):
+          input_field = i.find_element(By.XPATH, ".//input")
+          input_field.clear()
+          input_field.send_keys(data)
+      except NoSuchElementException:
+        pass
+
+  def select_option(self,type:str) -> None:
     pass
 
   def is_save_button_enabled(self) -> bool:

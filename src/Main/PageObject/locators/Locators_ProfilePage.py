@@ -3,26 +3,28 @@ from selenium.webdriver.common.by import By
 
 @dataclass(frozen=True)
 class ProfileLocators:
-  NAVIGATION_LINKS: tuple = (By.XPATH, 
-  "//div[contains(concat(' ', normalize-space(@class), ' '), ' profile-nav-link')]")
+	NAVIGATION_LINKS: tuple = (By.XPATH, 
+	"//div[contains(concat(' ', normalize-space(@class), ' '), ' profile-nav-link')]")
 
 	#upload cv card
-  MY_CV: tuple = By.XPATH, "//div[contains(@class, 'col-md-5')]/div[2]"
+	MY_CV: tuple = By.XPATH, "//div[contains(@class, 'col-md-5')]/div[2]"
 
-  #GENERAL ELEMENTS THAT ALL MODULES SHARE
-  #save module button
-  SAVE_BUTTON: tuple = By.XPATH, "//button[text() = ' შენახვა ']"
+	#GENERAL ELEMENTS THAT ALL MODULES SHARE
+	#save module button
+	SAVE_BUTTON: tuple = By.XPATH, "//button[text() = ' შენახვა ']"
 
-  #close module button
-  CLOSE_BUTTON: tuple = By.CLASS_NAME, "btn-close"
+	#close module button
+	CLOSE_BUTTON: tuple = By.CLASS_NAME, "btn-close"
 
-  #module dropdowns
-  DROPDOWNS: tuple = By.XPATH, "//ng-select"
+	#module dropdowns
+	DROPDOWNS: tuple = By.XPATH, "//ng-select"
 
-  FORM_CHECK: tuple = By.XPATH, "//label[contains(@class, 'form-check-label')]"
+	FORM_CHECK: tuple = By.XPATH, "//label[contains(@class, 'form-check-label')]"
 
-  #invalid format text warning
-  INVALID_FORMAT: tuple = By.XPATH, "//small[contains(@class, 'color-hot')]"
+	#invalid format text warning
+	INVALID_FORMAT: tuple = By.XPATH, "//small[contains(@class, 'color-hot')]"
+	
+	MANDATORY_FIELDS: tuple = By.XPATH, "//div[contains(@class, 'form-group mb')]"
 
 
 @dataclass(frozen=True)
