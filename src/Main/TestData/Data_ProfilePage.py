@@ -19,3 +19,5 @@ class ProfileData:
   dribble_url: str = 'https://dribbble.com/'
   behance_url: str = 'behance.net/'
   other_url: str = 'https://www.google.com/'
+  month:str = 'თვე'
+  year:str = 'წელი'

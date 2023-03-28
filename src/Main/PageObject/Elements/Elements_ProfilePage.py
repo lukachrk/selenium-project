@@ -16,6 +16,7 @@ class ProfileElements:
   close_button = ClickablElement(ProfileLocators.CLOSE_BUTTON)
   invalid_format_warning = BasePageElement(ProfileLocators.INVALID_FORMAT)
   mandatory_fields = ClickablElement(ProfileLocators.MANDATORY_FIELDS, elements=True)
+  options_fields = ClickablElement(ProfileLocators.OPTION_FIELDS, elements=True)
 
 class CardElements:
   def __init__(self, driver, locator):

@@ -25,6 +25,8 @@ class ProfileLocators:
 	INVALID_FORMAT: tuple = By.XPATH, "//small[contains(@class, 'color-hot')]"
 	
 	MANDATORY_FIELDS: tuple = By.XPATH, "//div[contains(@class, 'form-group mb')]"
+	
+	OPTION_FIELDS: tuple = By.XPATH, "//ng-select"
 
 
 @dataclass(frozen=True)
@@ -61,4 +63,18 @@ class Module_locators:
 	BEHANCE: tuple = By.ID, 'behance'
 	OTHER: tuple = By.ID, 'other'
 
+@dataclass(frozen=True)
+class Months_locators:
+	January: tuple = By.XPATH, "//div[contains(@class, 'ng-dropdown-panel-items')]/div/div[1]"
+	February: tuple = By.XPATH, "//div[contains(@class, 'ng-dropdown-panel-items')]/div/div[2]"
+	March: tuple = By.XPATH, "//div[contains(@class, 'ng-dropdown-panel-items')]/div/div[3]"
+	April: tuple = By.XPATH, "//div[contains(@class, 'ng-dropdown-panel-items')]/div/div[4]"
+	May: tuple = By.XPATH, "//div[contains(@class, 'ng-dropdown-panel-items')]/div/div[5]"
+	June: tuple = By.XPATH, "//div[contains(@class, 'ng-dropdown-panel-items')]/div/div[6]"
+	July: tuple = By.XPATH, "//div[contains(@class, 'ng-dropdown-panel-items')]/div/div[7]"
+	August: tuple = By.XPATH, "//div[contains(@class, 'ng-dropdown-panel-items')]/div/div[8]"
+	September: tuple = By.XPATH, "//div[contains(@class, 'ng-dropdown-panel-items')]/div/div[9]"
+	October: tuple = By.XPATH, "//div[contains(@class, 'ng-dropdown-panel-items')]/div/div[10]"
+	November: tuple = By.XPATH, "//div[contains(@class, 'ng-dropdown-panel-items')]/div/div[11]"
+	December: tuple = By.XPATH, "//div[contains(@class, 'ng-dropdown-panel-items')]/div/div[12]"
 

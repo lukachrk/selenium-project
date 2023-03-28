@@ -42,6 +42,18 @@ class Profile:
       except NoSuchElementException:
         pass
 
+  def select_option(self, Type:str, date:tuple):
+    options = self.element.options_fields
+    for i in options:
+      try:
+        option_label = i.find_element(By.XPATH, f"//div[text() = 'აირჩიე დაწყების {Type}']")
+        if(option_label):
+          i.click()
+          self.driver.find_element(*date).click()
+      except NoSuchElementException:
+        pass
+
+      
   def select_option(self,type:str) -> None:
     pass
 

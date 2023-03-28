@@ -70,6 +70,8 @@ class Experience_Module_Test(unittest.TestCase):
   @description('filling out every mandatory field and checking if save button is enabled')
   def test_2_module_mandatory_fields(self):
     steps.fill_out_mandatory_fields(data = GLData.numbers)
+    steps.select_option(Type=PFData.month, date=Months_locators.April)
+    steps.select_option(Type=PFData.year, date=2022)
     self.assertTrue(steps.is_save_button_enabled())
 
   def test_3_select_options_month(self):
