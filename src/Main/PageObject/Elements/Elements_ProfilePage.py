@@ -17,6 +17,8 @@ class ProfileElements:
   invalid_format_warning = BasePageElement(ProfileLocators.INVALID_FORMAT)
   mandatory_fields = ClickablElement(ProfileLocators.MANDATORY_FIELDS, elements=True)
   options_fields = ClickablElement(ProfileLocators.OPTION_FIELDS, elements=True)
+  click_until_now = ClickablElement(ProfileLocators.OPTION_UNTIL_NOW)
+  options_list = ClickablElement(ProfileLocators.OPTIONS_LIST)
 
 class CardElements:
   def __init__(self, driver, locator):

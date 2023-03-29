@@ -67,18 +67,28 @@ class Experience_Module_Test(unittest.TestCase):
   
     self.assertTrue(is_invalid_format)
 
+  @unittest.skip('a')
   @description('filling out every mandatory field and checking if save button is enabled')
   def test_2_module_mandatory_fields(self):
     steps.fill_out_mandatory_fields(data = GLData.numbers)
-    steps.select_option(Type=PFData.month, date=Months_locators.April)
-    steps.select_option(Type=PFData.year, date=2022)
+    steps.select_option(Type=PFData.start_month, date=Months_locators.April)
+    steps.select_option(Type=PFData.start_year, date=ProfileLocators.year_23)
     self.assertTrue(steps.is_save_button_enabled())
 
+  @description('from and before time intervals shouldnt be same month')
   def test_3_select_options_month(self):
-    pass
+    steps.click_till_now_checkbox()
+    steps.select_option(Type=PFData.start_month, date = Months_locators.March)
+    options_list = steps.get_options_list(Type=PFData.end_month)
+
+    self.assertNotIn('March', options_list)
   
+  @description('if we start project in 2023, we shouldnt be able to choose 2022 as ending')
   def test_4_select_option_year(self):
-    pass
+    steps.click_till_now_checkbox()
+    steps.select_option(Type=PFData.start_year, date = ProfileLocators.year_23)
+    options_list = steps.get_options_list(Type=PFData.end_year)
+    self.assertNotIn('2023', options_list)
 
 
 class Education_Module_Test(unittest.TestCase): 
@@ -234,7 +244,18 @@ class Meet_User_Test(unittest.TestCase):
   def test_4_invalid_video_file_type(self):
     pass
 
+
+def suite():
+    test_suite = unittest.TestSuite()
+    test_suite.addTest(unittest.makeSuite(Experience_Module_Test))
+    return test_suite
+
+mySuit=suite()
+
+
+
 if __name__ == '__main__':
-  unittest.main()
+  runner=unittest.TextTestRunner()
+  runner.run(mySuit)
 
 

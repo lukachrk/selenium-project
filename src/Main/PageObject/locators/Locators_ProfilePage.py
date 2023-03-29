@@ -25,9 +25,14 @@ class ProfileLocators:
 	INVALID_FORMAT: tuple = By.XPATH, "//small[contains(@class, 'color-hot')]"
 	
 	MANDATORY_FIELDS: tuple = By.XPATH, "//div[contains(@class, 'form-group mb')]"
-	
-	OPTION_FIELDS: tuple = By.XPATH, "//ng-select"
 
+	OPTION_FIELDS: tuple = By.XPATH, "//ng-select"
+	OPTION_UNTIL_NOW: tuple = By.ID, "flexCheckDefault"
+	OPTIONS_LIST: tuple = By.XPATH, "//div[contains(@class, 'ng-dropdown-panel')]/div/div/span"
+
+	year_23: tuple = By.XPATH, "//div[contains(@class, 'ng-dropdown-panel')]/div/div[1]"
+	year_22: tuple = By.XPATH, "//div[contains(@class, 'ng-dropdown-panel')]/div/div[2]"
+	year_21: tuple = By.XPATH, "//div[contains(@class, 'ng-dropdown-panel')]/div/div[3]"
 
 @dataclass(frozen=True)
 class Card_locators:
