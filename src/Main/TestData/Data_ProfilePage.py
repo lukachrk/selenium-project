@@ -23,3 +23,7 @@ class ProfileData:
   end_month:str = 'დასრულების თვე'
   start_year:str = 'დაწყების წელი'
   end_year:str = 'დასრულების წელი'
+  big_pdf:str = ''
+  longName_pdf:str = ''
+  docx_file:str = ''
+  cv:str = ''

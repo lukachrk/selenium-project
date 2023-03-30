@@ -1,5 +1,5 @@
 from src.Main.PageObject.Elements.element import *
-from src.Main.PageObject.Locators.Locators_ProfilePage import ProfileLocators
+from src.Main.PageObject.Locators.Locators_ProfilePage import ProfileLocators, Module_locators
 
 
 
@@ -8,7 +8,7 @@ class ProfileElements:
     self.driver = driver
 
   nav_links = ClickablElement(ProfileLocators.NAVIGATION_LINKS, elements = True)
-  upload_cv = ClickablElement(ProfileLocators.MY_CV)
+  upload_cv = ClickablElement(Module_locators.CV_UPLOAD)
   save_button = BasePageElement(ProfileLocators.SAVE_BUTTON)
   click_save = ClickablElement(ProfileLocators.SAVE_BUTTON)
   open_dropdown = ClickablElement(ProfileLocators.DROPDOWNS)
@@ -19,6 +19,12 @@ class ProfileElements:
   options_fields = ClickablElement(ProfileLocators.OPTION_FIELDS, elements=True)
   click_until_now = ClickablElement(ProfileLocators.OPTION_UNTIL_NOW)
   options_list = ClickablElement(ProfileLocators.OPTIONS_LIST)
+  all_input_fields = ClickablElement(ProfileLocators.ALL_INPUT_FIELD, elements=True)
+  mandatory_options_from = BasePageElement(ProfileLocators.MANDATORY_OPTION_FROM)
+  mandatory_options_to = BasePageElement(ProfileLocators.MANDATORY_OPTION_TO)
+  success_message = BasePageElement(ProfileLocators.SUCCCESS_ALERT)
+  click_my_project_url = ClickablElement(ProfileLocators.MY_PROJECT_URL)
+
 
 class CardElements:
   def __init__(self, driver, locator):

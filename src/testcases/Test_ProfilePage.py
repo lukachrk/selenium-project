@@ -8,7 +8,6 @@ from src.testcases.TestSetup.ProfileSetup import *
 import time
 
 
-
 class Profile_Update_Module_test(unittest.TestCase):
   @classmethod
   def setUpClass(cls):
@@ -19,28 +18,11 @@ class Profile_Update_Module_test(unittest.TestCase):
   def tearDownClass(cls):
     steps.close_module()
 
-  @description("entering letter seperated by space in profile update surname field")
-  @unittest.skip('validation not implemented yet')
-  def test_1_surname_field_validation_for_numbers(self):
-    field = Module_locators.SURNAME
-    data = GLData.numbers
+  def test_1_input_fields_against_numbers(self):
+    steps.fill_out_fields(GLData.numbers)
 
-    steps.fill_out_field(field, data)
-    is_invalid_format = steps.field_has_validation(warning_type = GLData.invalid_format)
-  
-    self.assertTrue(is_invalid_format)
-
-  @description("entering numbers in profile update surname field")
-  @unittest.skip('validation not implemented yet')
-  def test_2_surname_field_validation_for_spaced_letters(self):
-    field = Module_locators.SURNAME
-    data = GLData.spaced_letters
-
-    steps.fill_out_field(field, data)
-    is_invalid_format = steps.field_has_validation(warning_type = GLData.invalid_format)
-  
-    self.assertTrue(is_invalid_format)
-
+  def test_2_input_fields_against_symbols(self):
+    steps.fill_out_fields(GLData.symbols)
 
 
 
@@ -55,28 +37,25 @@ class Experience_Module_Test(unittest.TestCase):
   def tearDownClass(cls):
     steps.close_module()
 
+  def test_1_input_fields_against_numbers(self):
+    steps.fill_out_fields(GLData.numbers)
 
-  @description("entering numbers as name in experience module position field")
-  @unittest.skip('validation not implemented yet')
-  def test_1_position_field_validation_for_numbers(self):
-    field = Module_locators.POSITION
-    data = GLData.spaced_letters
+  def test_2_input_fields_against_symbols(self):
+    steps.fill_out_fields(GLData.symbols)  
 
-    steps.fill_out_field(field, data)
-    is_invalid_format = steps.field_has_validation(warning_type = GLData.invalid_format)
-  
-    self.assertTrue(is_invalid_format)
+  def test_3_input_fields_against_empty_spaces(self):
+    steps.fill_out_fields(GLData.spacings)
 
-  @unittest.skip('a')
+
   @description('filling out every mandatory field and checking if save button is enabled')
-  def test_2_module_mandatory_fields(self):
+  def test_4_module_mandatory_fields(self):
     steps.fill_out_mandatory_fields(data = GLData.numbers)
     steps.select_option(Type=PFData.start_month, date=Months_locators.April)
     steps.select_option(Type=PFData.start_year, date=ProfileLocators.year_23)
     self.assertTrue(steps.is_save_button_enabled())
 
   @description('from and before time intervals shouldnt be same month')
-  def test_3_select_options_month(self):
+  def test_5_select_options_month(self):
     steps.click_till_now_checkbox()
     steps.select_option(Type=PFData.start_month, date = Months_locators.March)
     options_list = steps.get_options_list(Type=PFData.end_month)
@@ -84,7 +63,7 @@ class Experience_Module_Test(unittest.TestCase):
     self.assertNotIn('March', options_list)
   
   @description('if we start project in 2023, we shouldnt be able to choose 2022 as ending')
-  def test_4_select_option_year(self):
+  def test_6_select_option_year(self):
     steps.click_till_now_checkbox()
     steps.select_option(Type=PFData.start_year, date = ProfileLocators.year_23)
     options_list = steps.get_options_list(Type=PFData.end_year)
@@ -101,17 +80,29 @@ class Education_Module_Test(unittest.TestCase):
   def tearDownClass(cls):
     steps.close_module()
 
-  def test_1_filds_validations_for_invalid_data(self):
-    pass
+  def test_1_input_fields_against_symbols(self):
+    steps.fill_out_fields(GLData.symbols)  
 
-  def test_2_mandatory_fields(self):
-    pass
+  def test_2_input_fields_against_empty_spaces(self):
+    steps.fill_out_fields(GLData.spacings)
+  
+  def test_4_mandatory_fields(self):
+    steps.fill_out_mandatory_fields(data = GLData.spaced_letters)
 
-  def test_3_select_options_year(self):
-    pass
+  def test_5_select_options_year(self):
+    steps.select_option(Type=PFData.start_year, date = ProfileLocators.year_23)
+    options_list = steps.get_options_list(Type=PFData.end_year)
+    self.assertNotIn('2023', options_list)
 
   def test_module_for_valid_data(self):
-    pass
+    steps.fill_out_field(Module_locators.UNIVERSITY, data = PFData.university)
+    steps.fill_out_field(Module_locators.FACULTY, data = PFData.faculty)
+    steps.fill_out_field(Module_locators.DEGREE, data = PFData.degree)
+    steps.fill_out_field(Module_locators.GPA, data = PFData.gpa)
+    steps.select_option(Type = PFData.start_year, date = ProfileLocators.year_22)
+
+    steps.save_changes()
+    self.assertTrue(steps.profile_updated_succesfully())
 
 
 class Project_Module_Test(unittest.TestCase): 
@@ -125,10 +116,28 @@ class Project_Module_Test(unittest.TestCase):
     steps.close_module()
 
   def test_1_project_invalid_url_validation(self):
-    pass
+    steps.fill_out_field(Module_locators.PROJECT_NAME, data = GLData.spaced_letters)
 
-  def test_2_project_valid_url_validation(self):
-    pass
+    steps.select_option(Type = PFData.start_month, date = ProfileLocators.year_21)
+    steps.select_option(Type = PFData.start_year, date = Months_locators.March)
+
+    steps.fill_out_field(Module_locators.PROJECT_URL, data = GLData.invalid_url)
+    self.assertFalse(steps.is_save_button_enabled())
+
+
+  def test_2_module_for_valid_data(self):
+    steps.fill_out_field(Module_locators.PROJECT_NAME, data = PFData.project_name)
+
+    steps.select_option(Type = PFData.start_month, date = ProfileLocators.year_21)
+    steps.select_option(Type = PFData.start_year, date = Months_locators.March)
+
+    steps.fill_out_field(Module_locators.PROJECT_URL, data = PFData.project_url)
+
+    steps.close_module()
+    url = steps.open_my_project_url()
+    steps.open_card(Card_locators.PROJECTS)
+
+    self.assertIn(PFData.project_url, url)
 
 
 class Certificates_Module_Test(unittest.TestCase): 
@@ -217,13 +226,16 @@ class CV_Upload_Test(unittest.TestCase):
     steps.close_module()
 
   def test_1_upload_big_size_pdf_file(self):
-    pass
-  def test_2_upload_file_with_too_many_chars(self):
-    pass
+    steps.upload_cv(file = PFData.big_pdf)
+
+  def test_2_upload_file_with_long_name(self):
+    steps.upload_cv(file = PFData.longName_pdf)
+
   def test_3_upload_non_pdf_file(self):
-    pass
-  def test_4_cv_update(self):
-    pass
+    steps.upload_cv(file = PFData.docx_file)
+
+  def test_4_valid_pdf_file(self):
+    steps.upload_cv(file = PFData.cv)
 
 class Meet_User_Test(unittest.TestCase): 
   @classmethod

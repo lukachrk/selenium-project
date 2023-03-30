@@ -16,6 +16,8 @@ class ProfileLocators:
 	#close module button
 	CLOSE_BUTTON: tuple = By.CLASS_NAME, "btn-close"
 
+	ALL_INPUT_FIELD: tuple = By.XPATH, "//div[contains(@class, 'row')]/div[contains(@class, 'col-md-6')]/div/input"
+
 	#module dropdowns
 	DROPDOWNS: tuple = By.XPATH, "//ng-select"
 
@@ -29,10 +31,18 @@ class ProfileLocators:
 	OPTION_FIELDS: tuple = By.XPATH, "//ng-select"
 	OPTION_UNTIL_NOW: tuple = By.ID, "flexCheckDefault"
 	OPTIONS_LIST: tuple = By.XPATH, "//div[contains(@class, 'ng-dropdown-panel')]/div/div/span"
+	MANDATORY_OPTION_FROM:tuple = By.XPATH, "//label[text() = ' დან ']/small"
+	MANDATORY_OPTION_TO:tuple = By.XPATH, "//label[text() = ' მდე ']/small"
+
+	SUCCCESS_ALERT:tuple = By.XPATH, "//div[text() = ' შენი პროფილი წარმატებით განახლდა ' ]"
+
+	MY_PROJECT_URL: tuple = By.XPATH, "//div[contains(@class, 'company-position')]/div/a"
 
 	year_23: tuple = By.XPATH, "//div[contains(@class, 'ng-dropdown-panel')]/div/div[1]"
 	year_22: tuple = By.XPATH, "//div[contains(@class, 'ng-dropdown-panel')]/div/div[2]"
 	year_21: tuple = By.XPATH, "//div[contains(@class, 'ng-dropdown-panel')]/div/div[3]"
+
+
 
 @dataclass(frozen=True)
 class Card_locators:
@@ -61,12 +71,16 @@ class Module_locators:
 	GPA: tuple = By.ID, 'grade'
 	POSITION: tuple = By.ID, 'position'
 	EMPLOYER: tuple = By.ID, 'employer'
+	PROJECT_NAME: tuple = By.XPATH, "//div[contains(@class, 'form-group mb-3')]/input"
+	PROJECT_URL: tuple = By.XPATH, "//div[contains(@class, 'form-group mb-3 mt-3')]/input"
 	FACEBOOK: tuple = By.ID, 'facebook'
 	TWITTER: tuple = By.ID, 'twitter'
 	LINKEDIN: tuple = By.ID, 'linkedin'
 	DRIBBLE: tuple = By.ID, 'dribble'
 	BEHANCE: tuple = By.ID, 'behance'
 	OTHER: tuple = By.ID, 'other'
+	CV_UPLOAD: tuple = By.ID, 'cv-pdf'
+
 
 @dataclass(frozen=True)
 class Months_locators:
