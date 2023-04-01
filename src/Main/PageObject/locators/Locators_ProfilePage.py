@@ -29,8 +29,11 @@ class ProfileLocators:
 	MANDATORY_FIELDS: tuple = By.XPATH, "//div[contains(@class, 'form-group mb')]"
 
 	OPTION_FIELDS: tuple = By.XPATH, "//ng-select"
+	OPTION_FIELD_ITEMS: tuple = By.XPATH, "//div[contains(@class, 'ng-option')]"
+	OPTION_FIELD_NAMES: tuple = By.XPATH, "//div[contains(@class, 'ng-dropdown-panel')]/div/div/span"
 	OPTION_UNTIL_NOW: tuple = By.ID, "flexCheckDefault"
-	OPTIONS_LIST: tuple = By.XPATH, "//div[contains(@class, 'ng-dropdown-panel')]/div/div/span"
+	
+
 	MANDATORY_OPTION_FROM:tuple = By.XPATH, "//label[text() = ' დან ']/small"
 	MANDATORY_OPTION_TO:tuple = By.XPATH, "//label[text() = ' მდე ']/small"
 
@@ -50,7 +53,7 @@ class Card_locators:
 	WORK_EXPERIENCE: tuple = By.XPATH, "//div[contains(@class, 'col-md-7')]/div[3]/div[1]/div"
 	EDUCATION: tuple = By.XPATH, "//div[contains(@class, 'col-md-7')]/div[4]/div[1]/div"
 	PROJECTS: tuple = By.XPATH, "//div[contains(@class, 'col-md-7')]/div[5]/div[1]/div"
-	KNOW_USER: tuple = By.XPATH, "//div[contains(@class, 'col-md-5')]/div[3]/div[1]/div"
+	INTRO: tuple = By.XPATH, "//div[contains(@class, 'col-md-5')]/div[3]/div[1]/div"
 	SKILLS: tuple = By.XPATH, "//div[contains(@class, 'col-md-5')]/div[5]/div[1]/div"
 	LANGUAGES: tuple = By.XPATH, "//div[contains(@class, 'col-md-5')]/div[6]/div[1]/div"
 	CERTIFICATES: tuple = By.XPATH, "//div[contains(@class, 'col-md-5')]/div[7]/div[1]/div"
@@ -80,6 +83,16 @@ class Module_locators:
 	BEHANCE: tuple = By.ID, 'behance'
 	OTHER: tuple = By.ID, 'other'
 	CV_UPLOAD: tuple = By.ID, 'cv-pdf'
+	YOUTUBE_INPUT: tuple = By.ID, "video-url"
+	VIDEO_INPUT: tuple = By.ID, "image-upload-video"
+	PHONE_INPUT: tuple = By.XPATH, "//div[contains(@class, 'input-group mb-3')]/input"
+	EMAIL_INPUT: tuple = By.XPATH, "//div[contains(@class, 'input-group mb-3')]/input"
+	SEND_CODE: tuple = By.XPATH, "//div[contains(@class, 'input-group mb-3')]/button"
+	SKILL_INPUT: tuple = By.XPATH, "//div[contains(@class, 'ng-input')]/input"
+	SKILLS_LIST: tuple = By.XPATH, "//div[contains(@class, 'col-12')]/div[contains(@class, 'gap-2')]"
+	CERTIFICATE_INPUT: tuple = By.ID, 'name'
+	CERTIFICATE_UPLOAD: tuple = By.XPATH, "(//input[contains(@class, 'd-none')])[3]"
+	CERTIFICATE_URL: tuple = By.ID, 'url'
 
 
 @dataclass(frozen=True)
@@ -96,4 +109,3 @@ class Months_locators:
 	October: tuple = By.XPATH, "//div[contains(@class, 'ng-dropdown-panel-items')]/div/div[10]"
 	November: tuple = By.XPATH, "//div[contains(@class, 'ng-dropdown-panel-items')]/div/div[11]"
 	December: tuple = By.XPATH, "//div[contains(@class, 'ng-dropdown-panel-items')]/div/div[12]"
-

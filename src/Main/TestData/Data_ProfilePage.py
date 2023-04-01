@@ -27,3 +27,14 @@ class ProfileData:
   longName_pdf:str = ''
   docx_file:str = ''
   cv:str = ''
+  valid_yt_url: str = ''
+  invalid_yt_url: str = ''
+  valid_video: str = ''
+  invalid_video: str = ''
+  valid_email: str = ''
+  invalid_email: str = ''
+
+
+
+
+

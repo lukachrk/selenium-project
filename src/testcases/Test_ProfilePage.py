@@ -86,10 +86,10 @@ class Education_Module_Test(unittest.TestCase):
   def test_2_input_fields_against_empty_spaces(self):
     steps.fill_out_fields(GLData.spacings)
   
-  def test_4_mandatory_fields(self):
+  def test_3_mandatory_fields(self):
     steps.fill_out_mandatory_fields(data = GLData.spaced_letters)
 
-  def test_5_select_options_year(self):
+  def test_4_select_options_year(self):
     steps.select_option(Type=PFData.start_year, date = ProfileLocators.year_23)
     options_list = steps.get_options_list(Type=PFData.end_year)
     self.assertNotIn('2023', options_list)
@@ -102,7 +102,7 @@ class Education_Module_Test(unittest.TestCase):
     steps.select_option(Type = PFData.start_year, date = ProfileLocators.year_22)
 
     steps.save_changes()
-    self.assertTrue(steps.profile_updated_succesfully())
+    self.assertTrue(steps.module_updated_succesfully())
 
 
 class Project_Module_Test(unittest.TestCase): 
@@ -151,14 +151,18 @@ class Certificates_Module_Test(unittest.TestCase):
     steps.close_module()
 
   def test_1_non_pdf_file_upload(self):
-    pass
+    cer_name = GLData.spaced_letters
+    cer_type = 'pdf'
+    cer_file = PFData.docx_file
+    steps.upload_certificate(cer_name, cer_file, cer_type)
+
+    self.assertFalse(steps.is_save_button_enabled())
+
   def test_2_certificate_url_validation(self):
-    pass
-  def test_3_gif_upload_validation(self):
-    pass
-  def test_4_svg_upload_validation(self):
-    pass
-  def test_5_module_with_valid_data(self):
+    steps.fill_out_field(field = Module_locators.CERTIFICATE_URL, data = GLData.numbers)
+    self.assertFalse(steps.is_save_button_enabled())
+
+  def test_3_module_with_valid_data(self):
     pass
 
 
@@ -173,43 +177,51 @@ class Skills_Module_Test(unittest.TestCase):
     steps.close_module()
 
   def test_1_input_field_for_many_chars(self):
-    pass
+    steps.add_skill(skill = GLData.too_many_chars)
+
   def test_2_add_same_skill_twice(self):
-    pass
-  def test_3_add_skills_limit(self):
-    pass
-  def test_4_skills_sorting(self):
-    pass
+    steps.add_skill(skill = PFData.profession)
+    steps.add_skill(skill = PFData.profession)
+    skills = steps.get_skills_list()
+    self.assertEquals(len(skills), 1)
+    
+  def test_3_add_skills_against_symbols(self):
+    steps.add_skill(skill = GLData.symbols)
+    skills = steps.get_skills_list()
+    self.assertLess(len(skills), 1)
+
+  def test_4_add_skills_against_many_chars(self):
+    steps.add_skill(skill = GLData.too_many_chars)
+    skills = steps.get_skills_list()
+    self.assertLess(len(skills), 1)
+
+  def test_5_add_skills_against_numbers(self):
+    steps.add_skill(skill = GLData.numbers)
+    skills = steps.get_skills_list()
+    self.assertLess(len(skills), 1)
+
 
 
 class ContactInfo_Module_Test(unittest.TestCase): 
-  @classmethod
-  def setUpClass(cls):
-    time.sleep(3)
-    steps.open_card(Card_locators.EDUCATION)
-
-  @classmethod
-  def tearDownClass(cls):
-    steps.close_module()
-
   def test_1_invalid_phone_number_validation(self):
-    pass
+    steps.fill_out_field(field = Module_locators.PHONE_INPUT, data = GLData.numbers)
+
   def test_2_valid_phone_number_validation(self):
-    pass
-  def test_3_send_code_button(self):
+    steps.fill_out_field(field = Module_locators.PHONE_INPUT, data = GLData.numbers)
+
+  def test_3_invalid_email_validation(self):
+    steps.fill_out_field(field = Module_locators.EMAIL_INPUT, data = PFData.invalid_email)
+
+  def test_4_valid_email_validation(self):
+    steps.fill_out_field(field = Module_locators.EMAIL_INPUT, data = PFData.valid_email)
+
+  def test_5_send_code_to_registered_email(self):
+    steps.click_send_code(Module_locators.SEND_CODE)
+
+  def test_6_socials_with_invalid_url_format(self):
     pass
 
-  def test_4_invalid_email_validation(self):
-    pass
-  def test_5_valid_email_validation(self):
-    pass
-  def test_6_send_code_to_registered_email(self):
-    pass
-  def test_7_send_code_button(self):
-    pass
-  def test_8_socials_with_invalid_url_format(self):
-    pass
-  def test_9_socials_with_valid_url_format(self):
+  def test_7_socials_with_valid_url_format(self):
     pass
 
 
@@ -237,24 +249,27 @@ class CV_Upload_Test(unittest.TestCase):
   def test_4_valid_pdf_file(self):
     steps.upload_cv(file = PFData.cv)
 
-class Meet_User_Test(unittest.TestCase): 
+class Intro_Test(unittest.TestCase): 
   @classmethod
   def setUpClass(cls):
     time.sleep(3)
-    steps.open_card(ProfileLocators.MY_CV)
+    steps.open_card(Card_locators.INTRO)
 
   @classmethod
   def tearDownClass(cls):
     steps.close_module()
 
   def test_1_valid_youtube_url(self):
-    pass
+    steps.update_youtube_url(url = PFData.valid_yt_url)
+
   def test_2_invalid_youtube_url(self):
-    pass
+    steps.update_youtube_url(url = PFData.invalid_yt_url)
+
   def test_3_valid_video_file_type(self):
-    pass
+    steps.upload_video(path = PFData.valid_video)
+
   def test_4_invalid_video_file_type(self):
-    pass
+    steps.upload_video(path = PFData.invalid_video)
 
 
 def suite():

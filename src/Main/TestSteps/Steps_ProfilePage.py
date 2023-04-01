@@ -31,11 +31,11 @@ class Profile:
 
 
 	def fill_out_field(self, field:str, data) -> None:
-		field_element = FieldElements(self.driver,field)
+		field_element = FieldElements(self.driver, field)
 		field_element.send_input(data)
 
 	
-	def fill_out_fields(self, data):
+	def fill_out_fields(self, data) -> None:
 		input_fields = self.element.all_input_fields
 		for i in input_fields:
 			i.clear()
@@ -55,9 +55,9 @@ class Profile:
 			except NoSuchElementException:
 				pass
 
-
+	#helper function for opening dropdowns
 	#in built selenium Select can't be used on ng-select angular elements. this is my implementation
-	def select_option(self, Type:str, date:tuple):
+	def click_option(self, Type:str):
 		options = self.element.options_fields
 
 		for i in options:
@@ -66,24 +66,14 @@ class Profile:
 				if(option_label):
 					time.sleep(2)
 					i.click()
-					self.driver.find_element(*date).click()
 			except NoSuchElementException:
 				pass
 	
-	def get_options_list(self, Type:str) -> list:
-		options = self.element.options_fields
-		for i in options:
-			try:
-				option_label = i.find_element(By.XPATH, f".//div[text() = 'აირჩიე {Type}']")
-				if(option_label):
-					time.sleep(2)
-					i.click()
-					time.sleep(2)
-					option_elements = self.element.options_list
-					names  = [span.text for span in names]
-					return names
-			except NoSuchElementException:
-				pass
+	def get_option_names(self, Type:str) -> list:
+		self.click_option(Type = Type)
+		names = self.element.options_field_names
+		return [name.text for name in names]
+	
 	
 	def click_till_now_checkbox(self) -> None:
 		self.element.click_until_now
@@ -99,10 +89,10 @@ class Profile:
 
 		if warning_element is not None:
 			return warning_type in warning_element.text
+		else:
+			return False
 
-		return False
-
-	def profile_updated_succesfully(self):
+	def module_updated_succesfully(self):
 		success = self.element.success_message
 		if(success):
 			return True
@@ -115,11 +105,56 @@ class Profile:
 
 		self.driver.switch_to.window(self.driver.window_handles[1])
 		url = self.driver.current_url
-		self.driver.switch_to.window(self.driver.window_handles[1])
+		self.driver.switch_to.window(self.driver.window_handles[0])
 
 		return url
 
 	def upload_cv(self, file:str):
 		self.element.upload_cv
+
+
+	def update_youtube_url(self, url:str,):
+		self.element.options_fields[0].click()
+		youtube_option = self.element.option_field_items[0].click()
+		self.element.youtube_url = url
+
+		time.sleep(2)
+
+	def upload_video(self, path:str):
+		self.element.options_fields[0].click()
+		video_option = self.element.option_field_items[1].click()
+
+		time.sleep(2)
+		self.element.video_upload = path
+
+	def click_send_code(self, element):
+		send_button = FieldElements(self.driver, element)
+
+	def add_skill(self, skill:str):
+		self.element.options_fields[0].click()
+		self.element.add_skill = skill
+	
+	def get_skills_list(self):
+		skills_list = self.element.skills_list
+		skill_names = skills_list.find_elements(By.TAG_NAME, 'span')
+		return [names.text for names in skill_names]
+			
+	def upload_certificate(self, name:str, file:str, Type:str):
+		self.element.certificate_name = name
+		self.element.options_fields[0].click()
+		upload_options = self.element.option_field_items
+
+		if(Type=='pdf'):
+			upload_options[0].click()
+		else:
+			upload_options[1].click()
+			
+		self.element.upload_certificate = file
+	
+	def fill_certificate_url(self, name, url):
+		pass
+		
+
+			
 
 

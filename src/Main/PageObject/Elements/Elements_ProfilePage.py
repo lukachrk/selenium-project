@@ -8,22 +8,38 @@ class ProfileElements:
     self.driver = driver
 
   nav_links = ClickablElement(ProfileLocators.NAVIGATION_LINKS, elements = True)
+
   upload_cv = ClickablElement(Module_locators.CV_UPLOAD)
+
   save_button = BasePageElement(ProfileLocators.SAVE_BUTTON)
-  click_save = ClickablElement(ProfileLocators.SAVE_BUTTON)
-  open_dropdown = ClickablElement(ProfileLocators.DROPDOWNS)
-  check_label = ClickablElement(ProfileLocators.FORM_CHECK)
   close_button = ClickablElement(ProfileLocators.CLOSE_BUTTON)
-  invalid_format_warning = BasePageElement(ProfileLocators.INVALID_FORMAT)
-  mandatory_fields = ClickablElement(ProfileLocators.MANDATORY_FIELDS, elements=True)
-  options_fields = ClickablElement(ProfileLocators.OPTION_FIELDS, elements=True)
+
+  click_save = ClickablElement(ProfileLocators.SAVE_BUTTON)
   click_until_now = ClickablElement(ProfileLocators.OPTION_UNTIL_NOW)
-  options_list = ClickablElement(ProfileLocators.OPTIONS_LIST)
+  click_my_project_url = ClickablElement(ProfileLocators.MY_PROJECT_URL)
+  check_label = ClickablElement(ProfileLocators.FORM_CHECK)
+
+  invalid_format_warning = BasePageElement(ProfileLocators.INVALID_FORMAT)
+  success_message = BasePageElement(ProfileLocators.SUCCCESS_ALERT)
+
   all_input_fields = ClickablElement(ProfileLocators.ALL_INPUT_FIELD, elements=True)
+  mandatory_fields = ClickablElement(ProfileLocators.MANDATORY_FIELDS, elements=True)
+
+  options_fields = ClickablElement(ProfileLocators.OPTION_FIELDS, elements=True)
+  option_field_items = ClickablElement(ProfileLocators.OPTION_FIELD_ITEMS, elements=True)
+  options_field_names = ClickablElement(ProfileLocators.OPTION_FIELD_NAMES,elements=True)
+
   mandatory_options_from = BasePageElement(ProfileLocators.MANDATORY_OPTION_FROM)
   mandatory_options_to = BasePageElement(ProfileLocators.MANDATORY_OPTION_TO)
-  success_message = BasePageElement(ProfileLocators.SUCCCESS_ALERT)
-  click_my_project_url = ClickablElement(ProfileLocators.MY_PROJECT_URL)
+
+  youtube_url = BasePageElement(Module_locators.YOUTUBE_INPUT)
+  video_upload = BasePageElement(Module_locators.VIDEO_INPUT)
+
+  add_skill = BasePageElement(Module_locators.SKILL_INPUT)
+  skills_list = BasePageElement(Module_locators.SKILLS_LIST)
+
+  certificate_name = BasePageElement(Module_locators.CERTIFICATE_INPUT)
+  upload_certificate = BasePageElement(Module_locators.CERTIFICATE_UPLOAD)
 
 
 class CardElements:
