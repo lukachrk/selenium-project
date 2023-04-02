@@ -6,15 +6,12 @@ class ProfileLocators:
 	NAVIGATION_LINKS: tuple = (By.XPATH, 
 	"//div[contains(concat(' ', normalize-space(@class), ' '), ' profile-nav-link')]")
 
-	#upload cv card
-	MY_CV: tuple = By.XPATH, "//div[contains(@class, 'col-md-5')]/div[2]"
-
 	#GENERAL ELEMENTS THAT ALL MODULES SHARE
 	#save module button
 	SAVE_BUTTON: tuple = By.XPATH, "//button[text() = ' შენახვა ']"
 
 	#close module button
-	CLOSE_BUTTON: tuple = By.CLASS_NAME, "btn-close"
+	CLOSE_BUTTON: tuple = By.XPATH, "//button[contains(@class, 'btn-close')]"
 
 	ALL_INPUT_FIELD: tuple = By.XPATH, "//div[contains(@class, 'row')]/div[contains(@class, 'col-md-6')]/div/input"
 
@@ -82,17 +79,19 @@ class Module_locators:
 	DRIBBLE: tuple = By.ID, 'dribble'
 	BEHANCE: tuple = By.ID, 'behance'
 	OTHER: tuple = By.ID, 'other'
-	CV_UPLOAD: tuple = By.ID, 'cv-pdf'
-	YOUTUBE_INPUT: tuple = By.ID, "video-url"
-	VIDEO_INPUT: tuple = By.ID, "image-upload-video"
+	CV_UPLOAD: tuple = By.XPATH, "(//input[@type = 'file'])[2]"
+	YOUTUBE_INPUT: tuple = By.ID, "video_url"
+	VIDEO_UPLOAD: tuple = By.XPATH, "(//input[@type = 'file'])[3]"
 	PHONE_INPUT: tuple = By.XPATH, "//div[contains(@class, 'input-group mb-3')]/input"
 	EMAIL_INPUT: tuple = By.XPATH, "//div[contains(@class, 'input-group mb-3')]/input"
 	SEND_CODE: tuple = By.XPATH, "//div[contains(@class, 'input-group mb-3')]/button"
 	SKILL_INPUT: tuple = By.XPATH, "//div[contains(@class, 'ng-input')]/input"
 	SKILLS_LIST: tuple = By.XPATH, "//div[contains(@class, 'col-12')]/div[contains(@class, 'gap-2')]"
 	CERTIFICATE_INPUT: tuple = By.ID, 'name'
-	CERTIFICATE_UPLOAD: tuple = By.XPATH, "(//input[contains(@class, 'd-none')])[3]"
+	CERTIFICATE_UPLOAD: tuple = By.XPATH, "(//input[@type = 'file'])[3]"
 	CERTIFICATE_URL: tuple = By.ID, 'url'
+	USER_ALREADY_REGISTERED: tuple = By.XPATH, "//div[text() = ' ასეთი მომხმარებელი უკვე არსებობს ']"
+	INVALID_CV_WARNING: tuple = By.XPATH, "//div[text() = ' CV-ს ატვირთვა შესაძლებელია მხოლოდ PDF ფორმატში ' ]"
 
 
 @dataclass(frozen=True)

@@ -9,7 +9,7 @@ class ProfileElements:
 
   nav_links = ClickablElement(ProfileLocators.NAVIGATION_LINKS, elements = True)
 
-  upload_cv = ClickablElement(Module_locators.CV_UPLOAD)
+  upload_cv = BasePageElement(Module_locators.CV_UPLOAD)
 
   save_button = BasePageElement(ProfileLocators.SAVE_BUTTON)
   close_button = ClickablElement(ProfileLocators.CLOSE_BUTTON)
@@ -33,13 +33,16 @@ class ProfileElements:
   mandatory_options_to = BasePageElement(ProfileLocators.MANDATORY_OPTION_TO)
 
   youtube_url = BasePageElement(Module_locators.YOUTUBE_INPUT)
-  video_upload = BasePageElement(Module_locators.VIDEO_INPUT)
+  video_upload = UploadElement(Module_locators.VIDEO_UPLOAD)
 
   add_skill = BasePageElement(Module_locators.SKILL_INPUT)
   skills_list = BasePageElement(Module_locators.SKILLS_LIST)
 
   certificate_name = BasePageElement(Module_locators.CERTIFICATE_INPUT)
-  upload_certificate = BasePageElement(Module_locators.CERTIFICATE_UPLOAD)
+  upload_certificate = UploadElement(Module_locators.CERTIFICATE_UPLOAD)
+
+  user_registered_warning = BasePageElement(Module_locators.USER_ALREADY_REGISTERED)
+  invalid_cv_warning = BasePageElement(Module_locators.INVALID_CV_WARNING)
 
 
 class CardElements:

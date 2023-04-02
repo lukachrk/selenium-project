@@ -110,7 +110,8 @@ class Profile:
 		return url
 
 	def upload_cv(self, file:str):
-		self.element.upload_cv
+		time.sleep(2)
+		
 
 
 	def update_youtube_url(self, url:str,):
@@ -118,7 +119,6 @@ class Profile:
 		youtube_option = self.element.option_field_items[0].click()
 		self.element.youtube_url = url
 
-		time.sleep(2)
 
 	def upload_video(self, path:str):
 		self.element.options_fields[0].click()
@@ -129,6 +129,12 @@ class Profile:
 
 	def click_send_code(self, element):
 		send_button = FieldElements(self.driver, element)
+		warning = self.element.user_registered_warning
+
+		if(warning):
+			return warning.text
+		else:
+			return None
 
 	def add_skill(self, skill:str):
 		self.element.options_fields[0].click()
@@ -151,8 +157,25 @@ class Profile:
 			
 		self.element.upload_certificate = file
 	
+
 	def fill_certificate_url(self, name, url):
 		pass
+
+	def invalid_format_warning(self) -> str:
+		warning = self.element.invalid_format_warning
+		if(warning):
+			return warning.text
+		else:
+			return False
+
+	def invalid_cv_warning(self) -> str:
+		warning = self.element.invalid_cv_warning
+		if(warning):
+			return warning.text
+		else:
+			return False
+
+
 		
 
 			

@@ -13,10 +13,12 @@ class MainElement:
 class BasePageElement(MainElement):
   def __set__(self,obj,value):
     driver = obj.driver
-    WebDriverWait(driver, self.wait).until(
-      lambda driver: driver.find_element(*self.locator))
-    driver.find_element(*self.locator).clear()
-    driver.find_element(*self.locator).send_keys(value)
+    try:
+      element = WebDriverWait(driver, self.wait).until(lambda driver: driver.find_element(*self.locator))
+      element.clear()
+      element.send_keys(value)
+    except NoSuchElementException:
+      return None
 
   def __get__(self,obj,owner):
     driver = obj.driver
@@ -43,3 +45,12 @@ class ClickablElement(MainElement):
       element.click()
     except TimeoutException:
       pass
+
+class UploadElement(MainElement):
+  def __set__(self,obj,value):
+    driver = obj.driver
+    try:
+      element = WebDriverWait(driver, self.wait).until(lambda driver: driver.find_element(*self.locator))
+      element.send_keys(value)
+    except NoSuchElementException:
+      return None
