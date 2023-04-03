@@ -112,6 +112,13 @@ class Profile:
 	def upload_cv(self, file:str):
 		time.sleep(2)
 		self.element.upload_cv = file
+
+	def cv_uploaded_successfuly(self):
+		message = self.element.cv_uploaded_success_message
+		if(message):
+			return message
+		else:
+			return None
 		
 
 	def delete_cv(self):

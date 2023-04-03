@@ -194,8 +194,7 @@ class Certificates_Module_Test(unittest.TestCase):
     steps.fill_out_field(field = Module_locators.CERTIFICATE_URL, data = GLData.numbers)
     self.assertFalse(steps.is_save_button_enabled())
 
-  def test_3_module_with_valid_data(self):
-    pass
+
 
 
 class Skills_Module_Test(unittest.TestCase): 
@@ -305,14 +304,18 @@ class ContactInfo_Module_Test(unittest.TestCase):
 
 
 class CV_Upload_Test(unittest.TestCase): 
+  @unittest.skip('validation not implemented yet')
   @description('files with more than 25mb should be filtered out from being uploaded')
   def test_1_upload_big_size_pdf_file(self):
     steps.upload_cv(file = PFData.big_pdf)
+    self.assertIsNone(steps.cv_uploaded_successfuly())
     steps.delete_cv()
 
+  @unittest.skip('validation not implemented yet')
   @description('files with long names or specials symbols in their name should be filtered from uploading')
   def test_2_upload_file_with_long_name(self):
     steps.upload_cv(file = PFData.longName_pdf)
+    self.assertIsNone(steps.cv_uploaded_successfuly())
     steps.delete_cv()
 
   @description('uploading docx file to cv')
@@ -321,9 +324,10 @@ class CV_Upload_Test(unittest.TestCase):
     got_warning = steps.invalid_cv_warning()
     self.assertTrue(got_warning)
 
-  @description('upload valid pdf file and check if it opens')
+  @description('upload valid pdf file and check if it uploads succesfuly')
   def test_4_valid_pdf_file(self):
     steps.upload_cv(file = PFData.cv)
+    self.assertTrue(steps.cv_uploaded_successfuly())
 
 
 class Intro_Test(unittest.TestCase): 
@@ -337,6 +341,7 @@ class Intro_Test(unittest.TestCase):
     steps.close_module()
 
 
+  @unittest.skip('validation not implemented yet')
   def test_1_valid_youtube_url(self):
     steps.update_youtube_url(url = PFData.valid_yt_url)
     got_warning = steps.invalid_format_warning()

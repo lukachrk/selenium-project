@@ -13,7 +13,7 @@ class ProfileLocators:
 	#close module button
 	CLOSE_BUTTON: tuple = By.XPATH, "//button[contains(@class, 'btn-close')]"
 
-	ALL_INPUT_FIELD: tuple = By.XPATH, "//div[contains(@class, 'row')]/div[contains(@class, 'col-md-6')]/div/input"
+	ALL_INPUT_FIELD: tuple = By.XPATH, "//div[contains(@class, 'form-group mb-3')]//input[contains(@class, 'form-control')]"
 
 	#module dropdowns
 	DROPDOWNS: tuple = By.XPATH, "//ng-select"
