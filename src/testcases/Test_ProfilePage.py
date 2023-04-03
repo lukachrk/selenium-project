@@ -308,10 +308,12 @@ class CV_Upload_Test(unittest.TestCase):
   @description('files with more than 25mb should be filtered out from being uploaded')
   def test_1_upload_big_size_pdf_file(self):
     steps.upload_cv(file = PFData.big_pdf)
+    steps.delete_cv()
 
   @description('files with long names or specials symbols in their name should be filtered from uploading')
   def test_2_upload_file_with_long_name(self):
     steps.upload_cv(file = PFData.longName_pdf)
+    steps.delete_cv()
 
   @description('uploading docx file to cv')
   def test_3_upload_non_pdf_file(self):
@@ -334,6 +336,7 @@ class Intro_Test(unittest.TestCase):
   def tearDownClass(cls):
     steps.close_module()
 
+
   def test_1_valid_youtube_url(self):
     steps.update_youtube_url(url = PFData.valid_yt_url)
     got_warning = steps.invalid_format_warning()
@@ -345,14 +348,15 @@ class Intro_Test(unittest.TestCase):
     warning = steps.invalid_format_warning()
     self.assertIn('YouTube-ის ლინკი არასწორია', warning)
 
+  @description('uploading unsupported gif file as intro video ')
+  def test_3_invalid_video_file_type(self):
+    steps.upload_video(path = PFData.invalid_video)
+    self.assertFalse(steps.is_save_button_enabled())
+
   @description('uploading supported mp4 video file as a intro')
-  def test_3_valid_video_file_type(self):
+  def test_4_valid_video_file_type(self):
     steps.upload_video(path = PFData.valid_video)
     self.assertTrue(steps.is_save_button_enabled())
-
-  @description('uploading unsupported gif file as intro video ')
-  def test_4_invalid_video_file_type(self):
-    steps.upload_video(path = PFData.invalid_video)
 
 
 def suite():

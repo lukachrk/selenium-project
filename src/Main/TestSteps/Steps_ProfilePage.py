@@ -111,8 +111,12 @@ class Profile:
 
 	def upload_cv(self, file:str):
 		time.sleep(2)
+		self.element.upload_cv = file
 		
 
+	def delete_cv(self):
+		self.element.delete_cv
+		self.element.click_yes
 
 	def update_youtube_url(self, url:str,):
 		self.element.options_fields[0].click()
@@ -126,6 +130,7 @@ class Profile:
 
 		time.sleep(2)
 		self.element.video_upload = path
+		time.sleep(10)
 
 	def click_send_code(self, element):
 		send_button = FieldElements(self.driver, element)
@@ -176,8 +181,5 @@ class Profile:
 			return False
 
 
-		
-
-			
 
 

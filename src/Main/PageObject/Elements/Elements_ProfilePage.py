@@ -9,8 +9,6 @@ class ProfileElements:
 
   nav_links = ClickablElement(ProfileLocators.NAVIGATION_LINKS, elements = True)
 
-  upload_cv = BasePageElement(Module_locators.CV_UPLOAD)
-
   save_button = BasePageElement(ProfileLocators.SAVE_BUTTON)
   close_button = ClickablElement(ProfileLocators.CLOSE_BUTTON)
 
@@ -44,6 +42,11 @@ class ProfileElements:
   user_registered_warning = BasePageElement(Module_locators.USER_ALREADY_REGISTERED)
   invalid_cv_warning = BasePageElement(Module_locators.INVALID_CV_WARNING)
 
+  upload_cv = UploadElement(ProfileLocators.UPLOAD_CV)
+  cv_document = BasePageElement(ProfileLocators.UPLOADED_CV)
+  cv_uploaded_success_message = BasePageElement(ProfileLocators.CV_UPLOADED_SUCCESSFULY)
+  delete_cv = ClickablElement(ProfileLocators.DELETE_CV)
+  click_yes = ClickablElement(ProfileLocators.DELETE_CV_YES)
 
 class CardElements:
   def __init__(self, driver, locator):

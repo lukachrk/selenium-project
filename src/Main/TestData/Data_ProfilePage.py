@@ -1,4 +1,7 @@
 from dataclasses import dataclass
+import os
+
+dir_path = os.path.dirname(os.path.abspath(__file__))
 
 @dataclass(frozen=True)
 class ProfileData:
@@ -23,14 +26,13 @@ class ProfileData:
   end_month:str = 'დასრულების თვე'
   start_year:str = 'დაწყების წელი'
   end_year:str = 'დასრულების წელი'
-  big_pdf:str = 'C:/Users/luka/Desktop/some.pdf'
-  longName_pdf:str = 'C:/Users/luka/Desktop/APznzaahCkqx6SRDOEIJp346ViYc4GIfRvDMzm5XkwVh4LN--ny42HHK36zsAjgxBSrhk1d9YuC8nIlSdt6FFpZ7J-dGtj-gR62lj_UWJHgUUvvDArp01jVt9mx00UCn6fZC_mut7kFt9B1uYbt5MiArK-WrN21WZ9I7jD_d9ccCvqbPTj0U8Y36tqPeqM_r9vxZCVYlxSJrO44OhXC1jGA.pdf'
-  docx_file:str = 'C:/Users/luka/Desktop/test.docx'
-  cv:str = ''
+  big_pdf:str = os.path.join(dir_path, 'Files', 'pdf-sample.pdf')
+  longName_pdf:str = os.path.join(dir_path, 'Files', 'APznzaahCkqx6SRDOEIJp346ViYc4GIfRvDM.pdf')
+  docx_file:str = os.path.join(dir_path, 'Files', 'test.docx')
   valid_yt_url: str = 'youtu.be/1'
   invalid_yt_url: str = 'youtu.be1'
-  valid_video: str = 'C:/Users/luka/Desktop/certf.mp4'
-  invalid_video: str = 'C:/Users/luka/Desktop/certf.gif'
+  valid_video: str = os.path.join(dir_path, 'Files', 'test.mp4')
+  invalid_video: str = os.path.join(dir_path, 'Files', 'test.gif')
   valid_email: str = 'someone@gmail.com'
   invalid_email: str = '1@gmail.com'
   valid_phone_number: str = '+995599000000'

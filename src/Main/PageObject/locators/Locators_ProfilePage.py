@@ -38,6 +38,12 @@ class ProfileLocators:
 
 	MY_PROJECT_URL: tuple = By.XPATH, "//div[contains(@class, 'company-position')]/div/a"
 
+	UPLOAD_CV: tuple = By.XPATH, "(//input[@type = 'file'])[2]"
+	UPLOADED_CV: tuple = By.XPATH, "//div[contains(@class, 'uploaded-cv')]"
+	CV_UPLOADED_SUCCESSFULY: tuple = By.XPATH, "//div[text() = ' CV წარმატებით განახლდა ']"
+	DELETE_CV: tuple = By.XPATH, "//div[contains(@class, 'cv-btn')]"
+	DELETE_CV_YES: tuple = By.XPATH, "//button[text() = ' კი ']"
+
 	year_23: tuple = By.XPATH, "//div[contains(@class, 'ng-dropdown-panel')]/div/div[1]"
 	year_22: tuple = By.XPATH, "//div[contains(@class, 'ng-dropdown-panel')]/div/div[2]"
 	year_21: tuple = By.XPATH, "//div[contains(@class, 'ng-dropdown-panel')]/div/div[3]"
