@@ -5,7 +5,7 @@ from selenium.common.exceptions import NoSuchElementException, TimeoutException
 
 #elements - a bool type that determines if we want to find single or many elements
 class MainElement:
-  def __init__(self, locator: tuple, wait: int = 10, elements: bool = False):
+  def __init__(self, locator: tuple, wait: int = 5, elements: bool = False):
     self.locator = locator
     self.wait = wait
     self.elements = elements
@@ -19,6 +19,8 @@ class BasePageElement(MainElement):
       element.send_keys(value)
     except NoSuchElementException:
       return None
+    except TimeoutException:
+      return False
 
   def __get__(self,obj,owner):
     driver = obj.driver
@@ -27,6 +29,8 @@ class BasePageElement(MainElement):
       return element
     except NoSuchElementException:
       return None
+    except TimeoutException:
+      return False
 
 class ClickablElement(MainElement):
   def __get__(self,obj,value):
@@ -50,7 +54,7 @@ class UploadElement(MainElement):
   def __set__(self,obj,value):
     driver = obj.driver
     try:
-      element = WebDriverWait(driver, self.wait).until(lambda driver: driver.find_element(*self.locator))
+      element = WebDriverWait(driver, self.wait).until(EC.presence_of_element_located(*self.locator))
       element.send_keys(value)
     except NoSuchElementException:
       return None

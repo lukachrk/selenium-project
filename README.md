@@ -58,10 +58,10 @@ open up cmd, type: `python main.py` to run authentication tests
 
 - [ ] Add test cases for the main page components
 - [x] Add test cases for the profile page components
-- [x] add the ability to automatically detect chrome webdriver
-- [x] add reusable test data for different modules
-- [x] add reusable test data for different modules
-- [ ] test cases for registration
+- [x] Add the ability to automatically detect chrome webdriver
+- [x] Add reusable test data for different modules
+- [x] Add reusable test data for different modules
+- [x] Add test cases for registration
 
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
