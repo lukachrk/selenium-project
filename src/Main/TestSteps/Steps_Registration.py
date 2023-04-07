@@ -48,6 +48,13 @@ class Registration:
       return False
 
   def field_is_mandatory(self, field:str):
+    input_fields = self.element.all_inputs
+
+    for i in input_fields:
+      i.clear()
+      i.send_keys(1)
+      i.clear()
+
     mandatory_fields = self.element.warning_field_required
 
     match field:

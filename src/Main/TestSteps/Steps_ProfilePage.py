@@ -13,7 +13,6 @@ class Profile:
 		result = self.element.nav_links
 		links = {elem.text: elem for elem in result}
 
-		self.driver.implicitly_wait(10)
 		links[navlink].click()
 
 
@@ -64,7 +63,7 @@ class Profile:
 			try:
 				option_label = i.find_element(By.XPATH, f".//div[text() = 'აირჩიე {Type}']")
 				if(option_label):
-					time.sleep(2)
+					time.sleep(1)
 					i.click()
 			except NoSuchElementException:
 				pass
@@ -110,7 +109,6 @@ class Profile:
 		return url
 
 	def upload_cv(self, file:str):
-		time.sleep(2)
 		self.element.upload_cv = file
 
 	def cv_uploaded_successfuly(self):
@@ -137,7 +135,7 @@ class Profile:
 
 		time.sleep(2)
 		self.element.video_upload = path
-		time.sleep(10)
+		time.sleep(4)
 
 	def click_send_code(self, element):
 		send_button = FieldElements(self.driver, element)

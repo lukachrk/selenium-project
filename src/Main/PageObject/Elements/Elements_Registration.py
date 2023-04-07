@@ -12,6 +12,7 @@ class RegistrationElements:
   input_phone_number = BasePageElement(RegistrationLocators.PHONE_INPUT)
   input_password = BasePageElement(RegistrationLocators.PASSWORD_INPUT)
   input_name_surname = BasePageElement(RegistrationLocators.NAME_SURNAME_INPUT)
+  all_inputs = ClickablElement(RegistrationLocators.ALL_INPUT_FIELD, elements=True)
 
   tick_terms_checkbox = ClickablElement(RegistrationLocators.TERMS_CHECKBOX)
 

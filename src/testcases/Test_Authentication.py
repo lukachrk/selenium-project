@@ -7,7 +7,7 @@ class AuthTest(BaseSetupClass):
   @classmethod
   def setUpClass(cls):
     super().setUpClass()
-    cls.steps = Steps_Authentication.AuthModule(self.driver)
+    cls.steps = Steps_Authentication.AuthModule(cls.driver)
     cls.steps.open_auth_module()
 
 

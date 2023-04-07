@@ -8,7 +8,8 @@ class browser:
     self.path = path
     self.service = Service(self.path)
     self.options = Options()
-    # self.options.add_argument('--headless')
+    self.options.add_experimental_option('excludeSwitches', ['enable-logging'])
+    self.options.add_argument('--headless')
 
 
   def get_driver(self):
