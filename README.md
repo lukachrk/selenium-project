@@ -6,9 +6,16 @@
 
 
 ## About The Project
-Selenium gui automatization project for testing talent acqusition website "awork.ge"
+![terminal gif](https://user-images.githubusercontent.com/47860959/230725808-5da2f151-12ce-48c1-a872-2a6ae45c8482.gif)
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
+Selenium e2e testing automation project for talent acqusition website "awork.ge"
+
+## Backstory
+This is a personal project that I've been working on since I began learning QA theory and manual testing at CommSchool. The main objective of this project is to automate the test cases I've been writing and testing manually throughout the semester and improve my automation testing skills. To achieve this goal, I selected the awork platform as my testing ground, as I use it occasionally and wanted to practice finding and reproducing bugs.
+
+To accomplish the automation, I used several technologies, including Python and Selenium for web automation. I also utilized Rich, a library for customizing the console, to enhance the user experience.
+
+Overall, this project has been a valuable learning experience for me, allowing me to apply the concepts I've learned in a practical setting and develop my automation testing abilities.
 
 
 ## Getting Started
@@ -44,13 +51,10 @@ To get a local copy up and running follow these steps.
 
 
 ## Usage
-for the time being, test cases are written only for authorization only
-
-open up cmd, type: `python main.py` to run authentication tests
-
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
+open up cmd, type: `python main.py` and provide suite number to
+run one of the test suites. to test authetication or profile page 
+elements, you need to provide your credentials to authorize on 
+the websiter
 
 
 
@@ -62,6 +66,8 @@ open up cmd, type: `python main.py` to run authentication tests
 - [x] Add reusable test data for different modules
 - [x] Add reusable test data for different modules
 - [x] Add test cases for registration
+- [ ] create test suite for smoke testing
+- [ ] Add test suite for regression testing
 
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
+<p align="right"><a href="#readme-top">back to top</a></p>
