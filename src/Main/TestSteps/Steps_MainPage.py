@@ -1,17 +1,20 @@
 from src.Main.PageObject.Elements.Elements_MainPage import MainPageElements
+import time
 
 class MainPage:
-  def __init__(self, driver):
-    self.driver = driver
-    self.page = MainPageElements(self.driver)
+	def __init__(self, driver):
+		self.driver = driver
+		self.element = MainPageElements(self.driver)
 
-  def search_vacancy(self, text: str):
-    #basepageelement class __get__ method invoked
-    self.page.Vacancy_input
+	
+	def search_vacancy(self, text: str):
+		self.element.Vacancy_input = text
+		self.element.search_button.click()
 
-    #BasePageElement class __set__ method invoked
-    self.page.Vacancy_input = text
+	def vacancy_not_found(self):
+		warning = self.element.no_vacancy_found
 
-    self.page.search_button.click()
-    result = self.page.no_vacancy_found
-    return result
+		if(warning is not None):
+			return warning.text
+		else:
+			return False

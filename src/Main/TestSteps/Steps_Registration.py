@@ -1,6 +1,7 @@
 from src.Main.PageObject.Elements.Elements_Registration import *
 from selenium.common.exceptions import NoSuchElementException
 from selenium.webdriver.common.by import By
+from selenium.webdriver.common.keys import Keys
 import typing
 import time
 
@@ -11,7 +12,7 @@ class Registration:
 
   def navigate_to_registration(self):
     self.element.open_authentication
-    time.sleep(2)
+    time.sleep(1)
     self.element.click_register
   
   def fill_out_phone_number(self, number:str):
@@ -47,22 +48,15 @@ class Registration:
     else:
       return False
 
-  def field_is_mandatory(self, field:str):
+  def field_is_mandatory(self):
     input_fields = self.element.all_inputs
 
     for i in input_fields:
+      time.sleep(1)
       i.clear()
       i.send_keys(1)
-      i.clear()
+      i.send_keys(Keys.CONTROL, 'a')
+      i.send_keys(Keys.BACKSPACE)
 
     mandatory_fields = self.element.warning_field_required
-
-    match field:
-      case 'phone':
-        return mandatory_fields[0].text
-      case 'password':
-        return mandatory_fields[1].text
-      case 'name':
-        return mandatory_fields[2].text
-      case _:
-        return False
+    return [warning.text for warning in mandatory_fields]

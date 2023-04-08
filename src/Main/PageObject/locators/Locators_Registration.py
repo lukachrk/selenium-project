@@ -15,3 +15,4 @@ class RegistrationLocators:
   INVALID_NAME_SURNAME: tuple = By.XPATH, "//small[text() = ' სახელი უნდა შედგებოდეს მინიმუმ ორი სიტყვისგან ']"
   MANDATORY_FIELD: tuple = By.XPATH, "//small[contains(text(), 'სავალდებულოა')]"
   USER_ALREADY_EXITS: tuple = By.XPATH, "//div[text() =  ' ასეთი მომხმარებელი უკვე არსებობს ']"
+  ALL_INPUT_FIELD: tuple = By.XPATH, "//input[contains(@id, 'floatingInput')]"

@@ -8,9 +8,7 @@ class MainPageLocators:
   VACANCY_RESULT_NULL: tuple = By.XPATH, "//span[text()='შედეგი არ მოიძებნა']"
 
   POPUP: tuple = By.CLASS_NAME, 'btn.btn-medium'
-  NAVIGATION_LINKS: tuple = By.XPATH, 
-  "//div[contains(@class, 'profile-nav-link')]/span[contains(@class, 'd-md-inline')]"
 
-  HAMBURGER_DROPDOWN: tuple = By.XPATH, "//div[contains(@class, 'header-account')]"
+  HAMBURGER_DROPDOWN: tuple = By.XPATH, "//div[contains(@class, 'header-content')]/div[2]/button"
   HAMBURGER_APPLICATION_SENT: tuple = By.XPATH, "//span[text() = 'გაგზავნილი აპლიკაციები']"
 

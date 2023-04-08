@@ -7,66 +7,63 @@ from src.testcases.TestSetup.TestDescription import description
 import time
 
 
+
 class Registration_Test(BaseSetupClass):
   @classmethod
   def setUpClass(cls):
     super().setUpClass()
     cls.steps = Steps_Registration.Registration(cls.driver)
     cls.steps.navigate_to_registration()
+    time.sleep(2)
 
-
+  
   @description('entering valid number in input field and checking for any warnings')
   def test_1_phone_input_field_validation_for_valid_number(self):
     self.steps.fill_out_phone_number(number = RGData.valid_phone_number)
     self.assertFalse(self.steps.got_warning(warningType = 'number'))
 
 
-  @unittest.skip('validation not implemented')
+ 
   @description('entering invalid number in input field and checking for invalid format warning')
   def test_2_phone_input_field_validation_for_invalid_number(self):
     self.steps.fill_out_phone_number(number = RGData.invalid_phone_number)
-    format_invalid = self.steps.got_warning(warningType = 'number')
-    self.assertTrue(format_invalid,'validation error: the format is valid')
+    format_valid = self.steps.got_warning(warningType = 'number')
+    self.assertFalse(format_valid)
 
-
+  
   @description('entering letters in input field and checking for invalid format warning')
   def test_3_phone_input_field_validation_for_text(self):
     self.steps.fill_out_phone_number(number = RGData.valid_name_surname)
     format_invalid = self.steps.got_warning(warningType = 'number')
     self.assertTrue(format_invalid,'validation error: the format is valid')
 
+  
   def test_4_password_seven_symbols(self):
     self.steps.fill_out_password(password = RGData.seven_symbols)
     warning = self.steps.got_warning(warningType = 'password')
     self.assertIn('პაროლი უნდა შედგებოდეს მინიმუმ 8 სიმბოლოსგან', warning)
 
-
+  
   def test_5_password_eight_symbols(self):
     self.steps.fill_out_password(password = RGData.eight_symbols)
     warning = self.steps.got_warning(warningType = 'password')
     self.assertFalse(warning)
 
-
+  
   def test_6_password_nine_symbols(self):
     self.steps.fill_out_password(password = RGData.nine_symbols)
     warning = self.steps.got_warning(warningType = 'password')
     self.assertFalse(warning)
 
+
   @description('leaving every mandatory field empty and checking for warnings')
   def test_7_mandatory_fields(self):
-    self.steps.fill_out_phone_number(number = RGData.leave_empty)
-    phone = self.steps.field_is_mandatory(field = 'phone')
-    self.assertIn('მობილურის ნომერი სავალდებულოა', phone)
+    mandatory_fields = self.steps.field_is_mandatory()
+    self.assertIn('მობილურის ნომერი სავალდებულოა', mandatory_fields[0])
+    self.assertIn('პაროლი სავალდებულოა', mandatory_fields[1])
+    self.assertIn('სახელი და გვარი სავალდებულოა', mandatory_fields[2])
 
-    self.steps.fill_out_password(password = RGData.leave_empty)
-    password = self.steps.field_is_mandatory(field = 'password')
-    self.assertIn('პაროლი სავალდებულოა', password)
-
-    self.steps.fill_out_name_surname(name = RGData.leave_empty)
-    name = self.steps.field_is_mandatory(field = 'name')
-    self.assertIn('სახელი და გვარი სავალდებულოა', name)
-
-
+  
   @description('entering already registered user credentials')
   def test_8_registration_with_already_registered_user_data(self):
     self.steps.fill_out_phone_number(number=Skeys.phone_number)

@@ -14,7 +14,7 @@ class BasePageElement(MainElement):
   def __set__(self,obj,value):
     driver = obj.driver
     try:
-      element = WebDriverWait(driver, self.wait).until(lambda driver: driver.find_element(*self.locator))
+      element = WebDriverWait(driver, self.wait).until(EC.presence_of_element_located(self.locator))
       element.clear()
       element.send_keys(value)
     except NoSuchElementException:
@@ -25,7 +25,7 @@ class BasePageElement(MainElement):
   def __get__(self,obj,owner):
     driver = obj.driver
     try:
-      element = WebDriverWait(driver, self.wait).until(lambda driver: driver.find_element(*self.locator))
+      element = WebDriverWait(driver, self.wait).until(EC.presence_of_element_located(self.locator))
       return element
     except NoSuchElementException:
       return None
@@ -39,13 +39,13 @@ class ClickablElement(MainElement):
     #if elements bool is true, find all the elements and return them instead of clicking
     if(self.elements):
       try:
-        element = WebDriverWait(driver, self.wait).until(lambda driver: driver.find_elements(*self.locator))
+        element = WebDriverWait(driver, self.wait).until(EC.presence_of_all_elements_located(self.locator))
         return element
       except TimeoutException:
         pass
 
     try:
-      element = WebDriverWait(driver, self.wait).until(lambda driver: driver.find_element(*self.locator))
+      element = WebDriverWait(driver, self.wait).until(EC.element_to_be_clickable(self.locator))
       element.click()
     except TimeoutException:
       pass
@@ -54,7 +54,7 @@ class UploadElement(MainElement):
   def __set__(self,obj,value):
     driver = obj.driver
     try:
-      element = WebDriverWait(driver, self.wait).until(EC.presence_of_element_located(*self.locator))
+      element = WebDriverWait(driver, self.wait).until(EC.presence_of_element_located(self.locator))
       element.send_keys(value)
     except NoSuchElementException:
       return None

@@ -8,3 +8,4 @@ class MainPageElements:
   Vacancy_input = BasePageElement(MainPageLocators.VACANCY_INPUT)
   no_vacancy_found = BasePageElement(MainPageLocators.VACANCY_RESULT_NULL)
   search_button = BasePageElement(MainPageLocators.VACANCY_SEARCH_BUTTON)
+  open_hamburger = ClickablElement(MainPageLocators.HAMBURGER_DROPDOWN)

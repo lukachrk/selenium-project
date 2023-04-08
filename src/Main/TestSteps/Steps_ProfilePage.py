@@ -8,7 +8,7 @@ class Profile:
 	def __init__(self, driver):
 		self.driver = driver
 		self.element = ProfileElements(self.driver)
-	
+
 	def navigate_to(self, navlink:str) -> None: 
 		result = self.element.nav_links
 		links = {elem.text: elem for elem in result}
