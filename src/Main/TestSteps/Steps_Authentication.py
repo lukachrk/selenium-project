@@ -1,5 +1,6 @@
 from selenium.webdriver.common.by import By
 from src.Main.PageObject.Elements.Elements_AuthModule import AuthElements
+import time
 
 class AuthModule:
   def __init__(self, driver):
@@ -15,3 +16,4 @@ class AuthModule:
   
   def click_authorize(self):
     self.elements.click_authorization
+    time.sleep(2)
