@@ -1,7 +1,7 @@
 from src.Main.PageObject.Elements.Elements_ProfilePage import *
 from selenium.common.exceptions import NoSuchElementException
 from selenium.webdriver.common.by import By
-import typing
+from typing import Any, List
 import time
 
 class Profile:
@@ -56,7 +56,7 @@ class Profile:
 
 	#helper function for opening dropdowns
 	#in built selenium Select can't be used on ng-select angular elements. this is my implementation
-	def click_option(self, Type:str):
+	def click_option(self, Type:str) -> None:
 		options = self.element.options_fields
 
 		for i in options:
@@ -68,7 +68,7 @@ class Profile:
 			except NoSuchElementException:
 				pass
 	
-	def get_option_names(self, Type:str) -> list:
+	def get_option_names(self, Type:str) -> List:
 		self.click_option(Type = Type)
 		names = self.element.options_field_names
 		return [name.text for name in names]
@@ -91,7 +91,7 @@ class Profile:
 		else:
 			return False
 
-	def module_updated_succesfully(self):
+	def module_updated_succesfully(self) -> bool:
 		success = self.element.success_message
 		if(success):
 			return True
@@ -108,7 +108,7 @@ class Profile:
 
 		return url
 
-	def upload_cv(self, file:str):
+	def upload_cv(self, file:str) -> None:
 		self.element.upload_cv = file
 
 	def cv_uploaded_successfuly(self):
@@ -119,25 +119,26 @@ class Profile:
 			return None
 		
 
-	def delete_cv(self):
+	def delete_cv(self) -> None:
 		self.element.delete_cv
 		self.element.click_yes
 
-	def update_youtube_url(self, url:str,):
+	def update_youtube_url(self, url:str) -> None:
 		self.element.options_fields[0].click()
 		youtube_option = self.element.option_field_items[0].click()
 		self.element.youtube_url = url
 
 
-	def upload_video(self, path:str):
+	def upload_video(self, path:str) -> None:
 		self.element.options_fields[0].click()
 		video_option = self.element.option_field_items[1].click()
 
-		time.sleep(2)
+		time.sleep(0.5)
 		self.element.video_upload = path
-		time.sleep(4)
+		time.sleep(2)
 
-	def click_send_code(self, element):
+	#creating pageobject elements on the fly, rather using pre defined element objects
+	def click_send_code(self, element) -> Any:
 		send_button = FieldElements(self.driver, element)
 		warning = self.element.user_registered_warning
 
@@ -146,16 +147,16 @@ class Profile:
 		else:
 			return None
 
-	def add_skill(self, skill:str):
+	def add_skill(self, skill:str) -> None:
 		self.element.options_fields[0].click()
 		self.element.add_skill = skill
 	
-	def get_skills_list(self):
+	def get_skills_list(self) -> List:
 		skills_list = self.element.skills_list
 		skill_names = skills_list.find_elements(By.TAG_NAME, 'span')
 		return [names.text for names in skill_names]
 			
-	def upload_certificate(self, name:str, file:str, Type:str):
+	def upload_certificate(self, name:str, file:str, Type:str) -> None:
 		self.element.certificate_name = name
 		self.element.options_fields[0].click()
 		upload_options = self.element.option_field_items
@@ -171,14 +172,14 @@ class Profile:
 	def fill_certificate_url(self, name, url):
 		pass
 
-	def invalid_format_warning(self) -> str:
+	def invalid_format_warning(self) -> Any:
 		warning = self.element.invalid_format_warning
 		if(warning):
 			return warning.text
 		else:
 			return False
 
-	def invalid_cv_warning(self) -> str:
+	def invalid_cv_warning(self) -> Any:
 		warning = self.element.invalid_cv_warning
 		if(warning):
 			return warning.text

@@ -12,7 +12,7 @@ class RegistrationElements:
   input_phone_number = BasePageElement(RegistrationLocators.PHONE_INPUT)
   input_password = BasePageElement(RegistrationLocators.PASSWORD_INPUT)
   input_name_surname = BasePageElement(RegistrationLocators.NAME_SURNAME_INPUT)
-  all_inputs = ClickablElement(RegistrationLocators.ALL_INPUT_FIELD, elements=True)
+  all_inputs = BasePageElements(RegistrationLocators.ALL_INPUT_FIELD)
 
   tick_terms_checkbox = ClickablElement(RegistrationLocators.TERMS_CHECKBOX)
 
@@ -21,5 +21,5 @@ class RegistrationElements:
   warning_invalid_phone_number = BasePageElement(RegistrationLocators.INVALID_PHONE_FORMAT)
   warning_invalid_password = BasePageElement(RegistrationLocators.INVALID_PASSWORD)
   warning_invalid_name_surname = BasePageElement(RegistrationLocators.INVALID_NAME_SURNAME)
-  warning_field_required  = ClickablElement(RegistrationLocators.MANDATORY_FIELD, elements=True)
+  warning_field_required = BasePageElements(RegistrationLocators.MANDATORY_FIELD)
   warning_user_already_registered = BasePageElement(RegistrationLocators.USER_ALREADY_EXITS)

@@ -7,7 +7,7 @@ class ProfileElements:
   def __init__(self, driver):
     self.driver = driver
 
-  nav_links = ClickablElement(ProfileLocators.NAVIGATION_LINKS, elements = True)
+  nav_links = BasePageElements(ProfileLocators.NAVIGATION_LINKS)
 
   save_button = BasePageElement(ProfileLocators.SAVE_BUTTON)
   close_button = ClickablElement(ProfileLocators.CLOSE_BUTTON)
@@ -20,12 +20,12 @@ class ProfileElements:
   invalid_format_warning = BasePageElement(ProfileLocators.INVALID_FORMAT)
   success_message = BasePageElement(ProfileLocators.SUCCCESS_ALERT)
 
-  all_input_fields = ClickablElement(ProfileLocators.ALL_INPUT_FIELD, elements=True)
-  mandatory_fields = ClickablElement(ProfileLocators.MANDATORY_FIELDS, elements=True)
+  all_input_fields = BasePageElements(ProfileLocators.ALL_INPUT_FIELD)
+  mandatory_fields = BasePageElements(ProfileLocators.MANDATORY_FIELDS)
 
-  options_fields = ClickablElement(ProfileLocators.OPTION_FIELDS, elements=True)
-  option_field_items = ClickablElement(ProfileLocators.OPTION_FIELD_ITEMS, elements=True)
-  options_field_names = ClickablElement(ProfileLocators.OPTION_FIELD_NAMES,elements=True)
+  options_fields = BasePageElements(ProfileLocators.OPTION_FIELDS)
+  option_field_items = BasePageElements(ProfileLocators.OPTION_FIELD_ITEMS)
+  options_field_names = BasePageElements(ProfileLocators.OPTION_FIELD_NAMES)
 
   mandatory_options_from = BasePageElement(ProfileLocators.MANDATORY_OPTION_FROM)
   mandatory_options_to = BasePageElement(ProfileLocators.MANDATORY_OPTION_TO)

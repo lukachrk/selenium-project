@@ -7,13 +7,13 @@ class AuthModule:
     self.driver = driver
     self.elements = AuthElements(self.driver)
 
-  def open_auth_module(self):
+  def open_auth_module(self) -> None:
     self.elements.open_module
 
-  def send_credentials(self, login, password):
+  def send_credentials(self, login, password) -> None:
     self.elements.login = login
     self.elements.password = password
   
-  def click_authorize(self):
+  def click_authorize(self) -> None:
     self.elements.click_authorization
     time.sleep(2)
